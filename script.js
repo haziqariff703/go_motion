@@ -27,8 +27,9 @@ function logout() {
     window.location.href = 'index.html';
 }
 
-// Datasets (Static for Demo)
-const carData = [
+// Datasets (Static for Demo) 
+// *** CHANGED FROM const TO let TO ALLOW NEW DATA ***
+let carData = [
     { id: 'C001', model: 'Perodua Myvi', type: 'Compact', plateNumber: 'ABC1234', price: 'RM 60', status: 'Available', image: 'myvi.jpg' },
     { id: 'C002', model: 'Honda City', type: 'Sedan', plateNumber: 'DEF5678', price: 'RM 120', status: 'Available', image: 'city.jpg' },
     { id: 'C003', model: 'Proton X50', type: 'SUV', plateNumber: 'GHI9012', price: 'RM 150', status: 'Available', image: 'x50.jpg' },
@@ -48,7 +49,7 @@ const carData = [
     { id: 'C017', model: 'Proton X70', type: 'SUV', plateNumber: 'WXY5678', price: 'RM 115', status: 'Available', image: 'x70.jpg' },
 ];
 
-const rentalData = [
+let rentalData = [
     { id: 'R1001', customer: 'Ali Ahmad', car: 'Perodua Myvi', dates: '15 Jan - 18 Jan', total: 'RM 180', status: 'Paid', month: 0 }, 
     { id: 'R1002', customer: 'Sarah Tan', car: 'Honda City', dates: '10 Feb - 14 Feb', total: 'RM 480', status: 'Paid', month: 1 },
     { id: 'R1003', customer: 'David Lee', car: 'Proton X50', dates: '05 Mar - 08 Mar', total: 'RM 450', status: 'Paid', month: 2 },
@@ -61,10 +62,9 @@ const rentalData = [
     { id: 'R1024', customer: 'Ali Bin Ahmad', car: 'Honda City', dates: '10 Oct - 12 Oct', total: 'RM 240', status: 'Paid', month: 9 },
     { id: 'R1025', customer: 'Sarah Tan', car: 'Proton X50', dates: '15 Oct - 18 Oct', total: 'RM 540', status: 'Pending', month: 9 },
     { id: 'R1026', customer: 'Zulfadli Jumaat', car: 'Proton X50', dates: '27 Oct- 28 Oct', total: 'RM 180', status: 'Paid', month: 9 }
-
 ];
 
-const customerData = [
+let customerData = [
     { id: 'C-101', name: 'Ali Ahmad', email: 'ali@email.com', phone: '+6012-345 6789', joinDate: '12 Jan 2024', status: 'Verified', avatar: 'ali.jpeg' },
     { id: 'C-102', name: 'Sarah Tan', email: 'sarah@email.com', phone: '+6019-888 9999', joinDate: '15 Feb 2024', status: 'Pending', avatar: 'sarah.jpg' },
     { id: 'C-103', name: 'Muthu Kumar', email: 'muthu@email.com', phone: '+6017-777 6666', joinDate: '20 Mar 2024', status: 'Verified', avatar: 'https://ui-avatars.com/api/?name=Muthu+Kumar&background=random' },
@@ -74,12 +74,134 @@ const customerData = [
     { id: 'C-107', name: 'Zulfadli Jumaat', email: 'pali@email.com', phone: '+6018-765 4321', joinDate: '30 Jul 2024', status: 'Verified', avatar: 'https://ui-avatars.com/api/?name=Zulfadli+Jumaat&background=random' }
 ];
 
-const maintenanceData = [
+let maintenanceData = [
     { car: 'Proton X50', issue: 'Regular Service (10k KM)', date: '20 Oct 2024', cost: 'RM 350', status: 'Completed' },
     { car: 'Myvi Gen3', issue: 'Aircond Not Cold', date: '23 Oct 2024', cost: 'RM 120', status: 'In Progress' },
     { car: 'Honda City', issue: 'Brake Pad Replacement', date: '25 Oct 2024', cost: 'RM 250', status: 'Pending' },
     { car: 'Toyota Vios', issue: 'Tyre Alignment', date: '26 Oct 2024', cost: 'RM 80', status: 'Pending' }
 ];
+
+// ------------------------------------------
+// --- NEW MODAL FUNCTIONS ADDED HERE ---
+// ------------------------------------------
+
+// --- NEW BOOKING FUNCTIONS (For rentals.html) ---
+
+function openBookingModal() {
+    document.getElementById('bookingForm').reset();
+    var myModal = new bootstrap.Modal(document.getElementById('bookingModal'));
+    myModal.show();
+}
+
+function saveBooking() {
+    const customer = document.getElementById('bookCustomer').value;
+    const carModel = document.getElementById('bookCarModel').value;
+    const total = document.getElementById('bookTotal').value;
+    const startDate = document.getElementById('bookStartDate').value;
+    const endDate = document.getElementById('bookEndDate').value;
+
+    if (!customer || !carModel || !total) {
+        alert("Please fill in all booking details.");
+        return;
+    }
+
+    const newRental = {
+        id: 'R' + Date.now().toString().slice(-4),
+        customer: customer,
+        car: carModel,
+        dates: `${startDate} - ${endDate}`,
+        total: `RM ${parseFloat(total).toFixed(2)}`,
+        status: 'Pending',
+        month: new Date().getMonth()
+    };
+
+    rentalData.push(newRental);
+    
+    // Close modal
+    const modalEl = document.getElementById('bookingModal');
+    bootstrap.Modal.getInstance(modalEl).hide();
+    alert(`New booking saved for ${customer}! Refresh the page to see the new data.`);
+}
+
+
+// --- NEW CUSTOMER FUNCTIONS (For customers.html) ---
+
+function openCustomerModal() {
+    document.getElementById('customerForm').reset();
+    var myModal = new bootstrap.Modal(document.getElementById('customerModal'));
+    myModal.show();
+}
+
+function saveCustomer() {
+    const name = document.getElementById('custName').value;
+    const email = document.getElementById('custEmail').value;
+    const phone = document.getElementById('custPhone').value;
+    const status = document.getElementById('custStatus').value;
+
+    if (!name || !email) {
+        alert("Name and Email are required.");
+        return;
+    }
+
+    const newCustomer = {
+        id: 'C-' + (customerData.length + 101),
+        name: name,
+        email: email,
+        phone: phone,
+        joinDate: new Date().toLocaleDateString('en-GB'),
+        status: status,
+        avatar: `https://ui-avatars.com/api/?name=${name.replace(' ', '+')}&background=random`
+    };
+
+    customerData.push(newCustomer);
+    
+    // Close modal
+    const modalEl = document.getElementById('customerModal');
+    bootstrap.Modal.getInstance(modalEl).hide();
+    alert(`New customer ${name} saved! Refresh the page to see the new data.`);
+}
+
+
+// --- NEW MAINTENANCE FUNCTIONS (For maintenance.html) ---
+
+function openMaintenanceModal() {
+    document.getElementById('maintenanceForm').reset();
+    var myModal = new bootstrap.Modal(document.getElementById('maintenanceModal'));
+    myModal.show();
+}
+
+function saveMaintenance() {
+    const car = document.getElementById('maintCar').value;
+    const issue = document.getElementById('maintIssue').value;
+    const cost = document.getElementById('maintCost').value;
+    const status = document.getElementById('maintStatus').value;
+    const dateInput = document.getElementById('maintDate').value;
+    
+    if (!car || !issue) {
+        alert("Car Model and Issue are required.");
+        return;
+    }
+
+    const newLog = {
+        car: car,
+        issue: issue,
+        date: dateInput ? new Date(dateInput).toLocaleDateString('en-GB') : new Date().toLocaleDateString('en-GB'),
+        cost: `RM ${parseFloat(cost || 0).toFixed(2)}`,
+        status: status
+    };
+
+    maintenanceData.push(newLog);
+
+    // Close modal
+    const modalEl = document.getElementById('maintenanceModal');
+    bootstrap.Modal.getInstance(modalEl).hide();
+    alert(`Maintenance log for ${car} saved! Refresh the page to see the new data.`);
+}
+
+// ------------------------------------------
+// --- END OF NEW MODAL FUNCTIONS ---
+// ------------------------------------------
+
 
 // Data Table Population (Dynamic)
 // Cars Table
@@ -92,7 +214,7 @@ if (carsTable) {
                     <img src="${car.image}" onerror="this.src='https://placehold.co/60x40?text=No+Img'" class="rounded-3 me-3" style="width: 60px; height: 40px; object-fit: cover;">
                     <div>
                         <div class="fw-bold text-dark">${car.model}</div>
-                        <div class="small text-muted font-monospace">${car.id}</div>    
+                        <div class="small text-muted font-monospace">${car.id}</div>    
                     </div>
                 </div>
             </td>
@@ -401,7 +523,7 @@ function processTopCarsData() {
     // 3. Separate into two arrays for ApexCharts
     return {
         models: sortedCars.map(item => item[0]), // e.g. ['Honda City', 'Myvi']
-        counts: sortedCars.map(item => item[1])  // e.g. [5, 3]
+        counts: sortedCars.map(item => item[1])  // e.g. [5, 3]
     };
 }
 
@@ -454,6 +576,37 @@ function filterCarStatus(status) {
             }
         }
     });
+}
+
+// Function to open the pop-up
+function openCarModal() {
+    // 1. Reset the form (so it's empty when you open it)
+    document.getElementById('carForm').reset();
+    
+    // 2. Change the title to "Add New Car"
+    document.getElementById('carModalLabel').innerText = "Add New Car";
+    
+    // 3. Initialize and Show the Bootstrap Modal
+    var myModal = new bootstrap.Modal(document.getElementById('carModal'));
+    myModal.show();
+}
+
+// Function to handle the "Save" button
+function saveCar() {
+    // Get the values
+    const name = document.getElementById('carName').value;
+    const plate = document.getElementById('carPlate').value;
+
+    if(name === "") {
+        alert("Please enter a car name!");
+        return;
+    }
+
+    alert("Saving Car: " + name + " (" + plate + ")");
+    
+    // Here is where you would usually add code to save to the table/database
+    
+    // Close the modal manually if needed (or just refresh the list)
 }
 
 // =========================================

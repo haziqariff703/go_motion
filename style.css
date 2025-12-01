@@ -25,6 +25,31 @@ body {
 /* =========================================
    1. NEW SIDEBAR DESIGN (Profile + Navigation)
    ========================================= */
+
+/* Sidebar Brand Header */
+.sidebar-brand {
+    height: 90px;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.25); /* Darker shade for contrast */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-brand .brand-text h4 {
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Update sidebar-profile to remove top padding since brand is now there */
+.sidebar-profile {
+    padding-top: 20px; 
+    border-top: none; 
+}
+
+/* Optional: Hide brand text when sidebar is collapsed (if using toggle logic) */
+body.sb-sidenav-collapsed .sidebar-brand .brand-text {
+    display: none;
+}   
+
 #sidebar-wrapper {
     min-height: 100vh;
     width: 250px;

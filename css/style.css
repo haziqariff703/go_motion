@@ -388,16 +388,28 @@ body.sb-sidenav-collapsed #page-content-wrapper {
 
 /* === CRITICAL MOBILE FIXES === */
 
-/* 1. Force Navbar to stay ON TOP of the Sidebar */
+/* 1. Allow dropdown to be visible on mobile */
 .navbar {
-  position: relative;
-  z-index: 1060 !important; /* Higher than sidebar (1050) */
   overflow: visible !important;
+  position: relative;
+  z-index: 1060;
 }
 
-/* 2. Ensure Backdrop is below sidebar but above content */
-.sidebar-backdrop {
-  z-index: 1040 !important;
+/* 2. Ensure dropdown sits on top */
+.navbar .dropdown-menu {
+  position: absolute !important;
+  z-index: 9999 !important;
+  right: 0;
+  left: auto;
+  min-width: 200px;
+}
+
+/* 3. Mobile padding tweaks */
+@media (max-width: 768px) {
+  .container-fluid.px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 }
 
 /* FOOTER */

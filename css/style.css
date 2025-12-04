@@ -347,14 +347,24 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   }
 }
 
-/* --- FIX: Ensure Dropdown appears on top on Mobile --- */
+/* === MOBILE DROPDOWN FIXES === */
+
+/* 1. Allow the dropdown to spill out of the navbar */
+.navbar {
+  overflow: visible !important;
+  position: relative;
+  z-index: 1060; /* Higher than sidebar */
+}
+
+/* 2. Force the dropdown to float on top */
 .navbar .dropdown-menu {
-  position: absolute !important; /* Detach from the flow */
-  z-index: 9999 !important; /* Force it above EVERYTHING */
-  right: 0; /* Align to right edge */
-  left: auto; /* Prevent left alignment */
-  margin-top: 10px; /* Add spacing */
-  min-width: 200px; /* Ensure it's not too skinny */
+  position: absolute !important;
+  z-index: 1070 !important; /* Highest thing on page */
+  right: 10px; /* Small gap from right edge */
+  left: auto;
+  top: 100%; /* Directly below the text */
+  min-width: 200px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Strong shadow to see it */
 }
 
 /* Ensure the Navbar itself allows spilling over */

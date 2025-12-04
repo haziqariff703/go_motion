@@ -11,23 +11,32 @@ function filterCarStatus(status) {
 
 function initSidebarToggle() {
     const toggle = document.getElementById('menu-toggle');
-    
     if (toggle) {
         toggle.addEventListener('click', (e) => {
             e.preventDefault();
             
-            // LOGIC: Check if screen is Mobile (less than 768px)
+            // Check screen width
             if (window.innerWidth < 768) {
-                // Mobile: Toggle the 'Open' class and the Backdrop
+                // MOBILE: Add/Remove the 'Open' class
                 if (document.body.classList.contains('sb-sidenav-open')) {
                     document.body.classList.remove('sb-sidenav-open');
-                    removeBackdrop();
+                    // Remove backdrop if it exists
+                    const bd = document.getElementById('sidebar-backdrop');
+                    if (bd) bd.remove();
                 } else {
                     document.body.classList.add('sb-sidenav-open');
-                    addBackdrop();
+                    // Add Backdrop
+                    const backdrop = document.createElement('div');
+                    backdrop.id = 'sidebar-backdrop';
+                    backdrop.className = 'sidebar-backdrop';
+                    backdrop.addEventListener('click', () => {
+                         document.body.classList.remove('sb-sidenav-open');
+                         backdrop.remove();
+                    });
+                    document.body.appendChild(backdrop);
                 }
             } else {
-                // Desktop: Toggle the 'Collapsed' (Mini) class
+                // DESKTOP: Toggle Collapse
                 document.body.classList.toggle('sb-sidenav-collapsed');
             }
         });

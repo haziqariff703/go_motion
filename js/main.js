@@ -11,15 +11,14 @@ function filterCarStatus(status) {
 
 function initSidebarToggle() {
     const toggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar-wrapper');
     
-    if (toggle && sidebar) {
+    if (toggle) {
         toggle.addEventListener('click', (e) => {
             e.preventDefault();
             
-            // Check if we are on mobile (screen smaller than 768px)
+            // LOGIC: Check if screen is Mobile (less than 768px)
             if (window.innerWidth < 768) {
-                // MOBILE LOGIC: Toggle 'sb-sidenav-open'
+                // Mobile: Toggle the 'Open' class and the Backdrop
                 if (document.body.classList.contains('sb-sidenav-open')) {
                     document.body.classList.remove('sb-sidenav-open');
                     removeBackdrop();
@@ -28,11 +27,35 @@ function initSidebarToggle() {
                     addBackdrop();
                 }
             } else {
-                // DESKTOP LOGIC: Toggle 'sb-sidenav-collapsed'
+                // Desktop: Toggle the 'Collapsed' (Mini) class
                 document.body.classList.toggle('sb-sidenav-collapsed');
             }
         });
     }
+}
+
+// Helper: Create the dark overlay for mobile
+function addBackdrop() {
+    // Prevent multiple backdrops
+    if (document.getElementById('sidebar-backdrop')) return;
+
+    const backdrop = document.createElement('div');
+    backdrop.id = 'sidebar-backdrop';
+    backdrop.className = 'sidebar-backdrop'; // Uses your existing CSS
+    
+    // Close sidebar when clicking the background
+    backdrop.addEventListener('click', () => {
+        document.body.classList.remove('sb-sidenav-open');
+        removeBackdrop();
+    });
+    
+    document.body.appendChild(backdrop);
+}
+
+// Helper: Remove the dark overlay
+function removeBackdrop() {
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (backdrop) backdrop.remove();
 }
 
 // Helper to add dark overlay on mobile

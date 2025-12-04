@@ -347,12 +347,19 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   }
 }
 
-/* Ensure dropdown always floats above other content */
+/* --- FIX: Ensure Dropdown appears on top on Mobile --- */
 .navbar .dropdown-menu {
-  position: absolute !important; /* Force floating behavior */
-  z-index: 1050 !important; /* Higher than dashboard cards */
-  right: 0;
-  left: auto; /* Align to right edge */
+  position: absolute !important; /* Detach from the flow */
+  z-index: 9999 !important; /* Force it above EVERYTHING */
+  right: 0; /* Align to right edge */
+  left: auto; /* Prevent left alignment */
+  margin-top: 10px; /* Add spacing */
+  min-width: 200px; /* Ensure it's not too skinny */
+}
+
+/* Ensure the Navbar itself allows spilling over */
+.navbar {
+  overflow: visible !important;
 }
 
 /* FOOTER */

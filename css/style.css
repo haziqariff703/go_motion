@@ -321,29 +321,43 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   margin-left: 0;
 }
 
-/* Mobile */
+/* =========================================
+   MOBILE RESPONSIVENESS FIXES
+   ========================================= */
 @media (max-width: 768px) {
-  #sidebar-wrapper {
-    margin-left: -250px;
-    position: fixed;
-    height: 100vh;
-    z-index: 1050;
+  /* 1. Reduce spacing on mobile so content isn't squished */
+  .container-fluid.px-4 {
+    padding-left: 1.5rem !important; /* Standard Bootstrap gutter (px-3) */
+    padding-right: 1.5rem !important;
   }
 
-  body.sb-sidenav-open #sidebar-wrapper {
-    margin-left: 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  /* 2. Make Footer links sit side-by-side (2 per row) instead of 1 per row */
+  .site-footer .col-lg-2 {
+    width: 50% !important; /* Forces 2 columns per row */
+    flex: 0 0 auto;
+    margin-bottom: 2rem !important;
   }
 
+  /* 3. Fix Navbar alignment */
+  .navbar-teal {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* 4. Ensure Sidebar backdrop covers everything */
   .sidebar-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1040;
-    backdrop-filter: blur(2px);
+    z-index: 1040; /* Below sidebar (1050) but above content */
+  }
+
+  /* 5. Fix Chart Containers overflowing */
+  .chart-container {
+    padding: 1rem !important;
+    overflow: hidden; /* Prevents horizontal scrolling */
+  }
+
+  /* 6. Adjust Stats Cards */
+  .stat-card {
+    margin-bottom: 0; /* Let grid handle spacing */
   }
 }
 

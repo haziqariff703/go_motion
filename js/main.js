@@ -31,7 +31,7 @@ function initThemeSwitcher() {
     };
     applyTheme(storedTheme); // Apply immediately
 
-    // 2. IF the dropdown exists (Settings page), sync it
+    // 2. IF the dropdown exists (Settings page), so it will sync it
     const select = document.getElementById('themeSelect');
     if (select) {
         select.value = storedTheme;

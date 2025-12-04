@@ -3,7 +3,7 @@
 // =========================================
 
 function updateKPIs() {
-    // 1. Total Cars
+    // Safety check: ensure elements exist before trying to update them
     const totalCarsEl = document.getElementById('totalCarsDisplay');
     const totalFleetLabel = document.getElementById('totalFleetLabel');
     if (totalCarsEl && carData) {
@@ -11,19 +11,18 @@ function updateKPIs() {
         if(totalFleetLabel) totalFleetLabel.textContent = carData.length + " Cars";
     }
 
-    // 2. Active Rentals
     const activeRentalsEl = document.getElementById('activeRentalsDisplay');
     if (activeRentalsEl && carData) {
         activeRentalsEl.textContent = carData.filter(c => c.status === 'Rented').length;
     }
 
-    // 3. Total Revenue (Paid Only)
     const totalRevenueEl = document.getElementById('totalRevenueDisplay');
     if (totalRevenueEl && rentalData) {
         const total = rentalData.reduce((sum, r) => {
-            if (r.status === 'Paid') {
-                // SIMPLE COMMAND: Remove first 3 chars ("RM ")
-                const amount = parseInt(r.total.slice(3)) || 0; 
+            if (r.status === 'Paid' && r.total) {
+                // SAFETY FIX: Convert to string first, then clean
+                const cleanStr = String(r.total).replace(/[^\d.-]/g, '');
+                const amount = parseInt(cleanStr) || 0; 
                 return sum + amount;
             }
             return sum;
@@ -35,22 +34,36 @@ function updateKPIs() {
 
 // --- CHARTS & GRAPHS ---
 function initCharts() {
-    // 1. REVENUE CHART
+    // 1. DETERMINE THEME COLOR
+    // Check if dark mode is active in storage OR system settings
+    const isDark = localStorage.getItem('crs_theme') === 'dark' || 
+                   (!localStorage.getItem('crs_theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    
+    const textColor = isDark ? '#f8fafc' : '#1e293b'; // White or Dark Blue
+
+    // 2. REVENUE CHART
     const revenueEl = document.querySelector("#revenueChart");
     if (revenueEl) {
         let monthlyRevenue = Array(12).fill(0);
         
-        rentalData.forEach(r => {
-            if (r.status === 'Paid' && r.month >= 0 && r.month < 12) {
-                // SIMPLE COMMAND: Remove first 3 chars ("RM ")
-                const amount = parseInt(r.total.slice(3)) || 0;
-                monthlyRevenue[r.month] += amount;
-            }
-        });
+        if (Array.isArray(rentalData)) {
+            rentalData.forEach(r => {
+                if (r.status === 'Paid' && r.month >= 0 && r.month < 12 && r.total) {
+                    const cleanStr = String(r.total).replace(/[^\d.-]/g, '');
+                    const amount = parseInt(cleanStr) || 0;
+                    monthlyRevenue[r.month] += amount;
+                }
+            });
+        }
 
         const options = {
             series: [{ name: 'Net Revenue', data: monthlyRevenue }],
-            chart: { type: 'area', height: 350, toolbar: { show: false } },
+            chart: { 
+                type: 'area', 
+                height: 350, 
+                toolbar: { show: false },
+                foreColor: textColor // <--- FIXES TEXT COLOR
+            },
             colors: ['#4f46e5'],
             dataLabels: { enabled: false },
             stroke: { curve: 'smooth' },
@@ -58,6 +71,7 @@ function initCharts() {
                 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] 
             },
             tooltip: {
+                theme: isDark ? 'dark' : 'light',
                 y: { formatter: function (val) { return "RM " + val } }
             }
         };
@@ -67,22 +81,30 @@ function initCharts() {
         window.revenueChartInstance.render();
     }
 
-    // 2. FLEET STATUS CHART
+    // 3. FLEET STATUS CHART
     const statusEl = document.querySelector("#statusChart");
     if (statusEl) {
-        let statusCounts = [
-            carData.filter(c => c.status === 'Available').length,
-            carData.filter(c => c.status === 'Rented').length,
-            carData.filter(c => c.status === 'Maintenance').length
-        ];
+        let statusCounts = [0, 0, 0];
+        if (Array.isArray(carData)) {
+            statusCounts = [
+                carData.filter(c => c.status === 'Available').length,
+                carData.filter(c => c.status === 'Rented').length,
+                carData.filter(c => c.status === 'Maintenance').length
+            ];
+        }
 
         const options = {
             series: statusCounts,
             labels: ['Available', 'Rented', 'Maintenance'],
-            chart: { type: 'donut', height: 320 },
+            chart: { 
+                type: 'donut', 
+                height: 320,
+                foreColor: textColor // <--- FIXES TEXT COLOR
+            },
             colors: ['#10b981', '#f59e0b', '#ef4444'],
             dataLabels: { enabled: false },
-            legend: { position: 'bottom' }
+            legend: { position: 'bottom' },
+            tooltip: { theme: isDark ? 'dark' : 'light' }
         };
 
         if(window.statusChartInstance) window.statusChartInstance.destroy();
@@ -90,14 +112,16 @@ function initCharts() {
         window.statusChartInstance.render();
     }
 
-    // 3. TOP CARS CHART
+    // 4. TOP CARS CHART
     const topCarsEl = document.querySelector("#topCarsChart");
     if (topCarsEl) {
         const carCounts = {};
-        rentalData.forEach(rent => {
-            const model = rent.car;
-            carCounts[model] = (carCounts[model] || 0) + 1;
-        });
+        if (Array.isArray(rentalData)) {
+            rentalData.forEach(rent => {
+                const model = rent.car || "Unknown";
+                carCounts[model] = (carCounts[model] || 0) + 1;
+            });
+        }
 
         const sortedCars = Object.entries(carCounts).sort((a, b) => b[1] - a[1]).slice(0, 5);
         const models = sortedCars.map(item => item[0]);
@@ -105,10 +129,16 @@ function initCharts() {
 
         const options = {
             series: [{ name: 'Times Rented', data: counts }],
-            chart: { type: 'bar', height: 300, toolbar: { show: false } },
+            chart: { 
+                type: 'bar', 
+                height: 300, 
+                toolbar: { show: false },
+                foreColor: textColor // <--- FIXES TEXT COLOR
+            },
             colors: ['#4f46e5'],
             plotOptions: { bar: { borderRadius: 4, horizontal: true, barHeight: '50%' } },
-            xaxis: { categories: models }
+            xaxis: { categories: models },
+            tooltip: { theme: isDark ? 'dark' : 'light' }
         };
 
         if(window.topCarsChartInstance) window.topCarsChartInstance.destroy();

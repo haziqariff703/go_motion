@@ -84,6 +84,76 @@ body {
   background-color: #334155;
 }
 
+/* =========================================
+   6. DARK MODE FIXES (The "Invisible Text" Fixer)
+   ========================================= */
+
+/* Force ".text-dark" to be WHITE in dark mode */
+[data-bs-theme="dark"] .text-dark {
+  color: var(--text-main) !important;
+}
+
+/* Force ".bg-white" to turn DARK BLUE in dark mode */
+[data-bs-theme="dark"] .bg-white {
+  background-color: var(--card-bg) !important;
+  color: var(--text-main);
+}
+
+/* Force ".bg-light" to be SEMI-TRANSPARENT in dark mode 
+   (This fixes your stat icons and table headers) */
+[data-bs-theme="dark"] .bg-light {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Fix Inputs (Text boxes) */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+  background-color: #0f172a; /* Dark background */
+  border-color: #334155; /* Dark border */
+  color: #ffffff; /* White text */
+}
+
+/* Fix Placeholders (The grey text inside empty inputs) */
+[data-bs-theme="dark"] ::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1;
+}
+
+/* =========================================
+   GLOBAL SMOOTH TRANSITIONS
+   ========================================= */
+body,
+.card,
+.navbar,
+#sidebar-wrapper,
+.list-group-item,
+.stat-card,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span,
+i,
+div {
+  /* Animate background and text color changes for 0.3 seconds */
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dim the logo circle in dark mode */
+[data-bs-theme="dark"] .navbar .rounded-circle.shadow-sm.me-2 {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ) !important; /* Semi-transparent white */
+}
+
 /* Fix Form Inputs */
 [data-bs-theme="dark"] .form-control,
 [data-bs-theme="dark"] .form-select {

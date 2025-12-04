@@ -13,7 +13,7 @@
   border-right: none;
 }
 
-/* 2. RGB TEXT EFFECT FOR GOMOTION */
+/* 2. RGB TEXT EFFECT FOR GOMOTION IN INDEX */
 .text-rgb {
   background: linear-gradient(
     90deg,
@@ -33,6 +33,38 @@
   color: transparent;
   animation: rgbFlow 10s linear infinite;
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes rgbFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* RGB TEXT EFFECT FOR H5 */
+.text-rgb {
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  background-size: 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rgbFlow 10s linear infinite;
+
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
 }
 
 @keyframes rgbFlow {

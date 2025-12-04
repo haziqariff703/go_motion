@@ -52,9 +52,7 @@ const defaultMaintenanceData = [
     { car: 'Toyota Vios', issue: 'Tyre Alignment', date: '26 Oct 2024', cost: 'RM 80', status: 'Pending' }
 ];
 
-// =========================================
-// SMART DATA INITIALIZATION
-// =========================================
+// Data Initialization
 
 // Helper to check if data exists AND is not empty
 function loadData(key, defaultData) {

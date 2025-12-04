@@ -13,7 +13,7 @@
   border-right: none;
 }
 
-/* 2. RGB TEXT EFFECT */
+/* 2. RGB TEXT EFFECT FOR GOMOTION */
 .text-rgb {
   background: linear-gradient(
     90deg,
@@ -44,9 +44,7 @@
   }
 }
 
-/* =========================================
-   SIDEBAR DESIGN
-   ========================================= */
+/* SIDEBAR DESIGN */
 
 /* Sidebar Brand Header */
 .sidebar-brand {

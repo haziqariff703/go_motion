@@ -11,12 +11,52 @@ function filterCarStatus(status) {
 
 function initSidebarToggle() {
     const toggle = document.getElementById('menu-toggle');
-    if (toggle) {
+    const sidebar = document.getElementById('sidebar-wrapper');
+    
+    if (toggle && sidebar) {
         toggle.addEventListener('click', (e) => {
             e.preventDefault();
-            document.body.classList.toggle('sb-sidenav-collapsed');
+            
+            // Check if we are on mobile (screen smaller than 768px)
+            if (window.innerWidth < 768) {
+                // MOBILE LOGIC: Toggle 'sb-sidenav-open'
+                if (document.body.classList.contains('sb-sidenav-open')) {
+                    document.body.classList.remove('sb-sidenav-open');
+                    removeBackdrop();
+                } else {
+                    document.body.classList.add('sb-sidenav-open');
+                    addBackdrop();
+                }
+            } else {
+                // DESKTOP LOGIC: Toggle 'sb-sidenav-collapsed'
+                document.body.classList.toggle('sb-sidenav-collapsed');
+            }
         });
     }
+}
+
+// Helper to add dark overlay on mobile
+function addBackdrop() {
+    // Check if backdrop already exists
+    if (document.getElementById('sidebar-backdrop')) return;
+
+    const backdrop = document.createElement('div');
+    backdrop.id = 'sidebar-backdrop';
+    backdrop.className = 'sidebar-backdrop'; 
+    
+    // Clicking backdrop closes sidebar
+    backdrop.addEventListener('click', () => {
+        document.body.classList.remove('sb-sidenav-open');
+        backdrop.remove();
+    });
+    
+    document.body.appendChild(backdrop);
+}
+
+// Helper to remove backdrop
+function removeBackdrop() {
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (backdrop) backdrop.remove();
 }
 
 function initThemeSwitcher() {

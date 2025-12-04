@@ -347,6 +347,14 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   }
 }
 
+/* Ensure dropdown always floats above other content */
+.navbar .dropdown-menu {
+  position: absolute !important; /* Force floating behavior */
+  z-index: 1050 !important; /* Higher than dashboard cards */
+  right: 0;
+  left: auto; /* Align to right edge */
+}
+
 /* FOOTER */
 
 .site-footer {

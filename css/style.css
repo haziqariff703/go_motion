@@ -386,6 +386,20 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   overflow: visible !important;
 }
 
+/* === CRITICAL MOBILE FIXES === */
+
+/* 1. Force Navbar to stay ON TOP of the Sidebar */
+.navbar {
+  position: relative;
+  z-index: 1060 !important; /* Higher than sidebar (1050) */
+  overflow: visible !important;
+}
+
+/* 2. Ensure Backdrop is below sidebar but above content */
+.sidebar-backdrop {
+  z-index: 1040 !important;
+}
+
 /* FOOTER */
 
 .site-footer {

@@ -9,50 +9,43 @@ function filterCarStatus(status) {
     });
 }
 
+// --- SIDEBAR TOGGLE LOGIC ---
 function initSidebarToggle() {
     const toggle = document.getElementById('menu-toggle');
-    if (toggle) {
-        toggle.addEventListener('click', (e) => {
-            e.preventDefault();
+    if (!toggle) return;
+
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Check if Mobile (Screen < 768px)
+        if (window.innerWidth < 768) {
+            const body = document.body;
             
-            // Check screen width
-            if (window.innerWidth < 768) {
-                // MOBILE: Add/Remove the 'Open' class
-                if (document.body.classList.contains('sb-sidenav-open')) {
-                    document.body.classList.remove('sb-sidenav-open');
-                    // Remove backdrop if it exists
-                    const bd = document.getElementById('sidebar-backdrop');
-                    if (bd) bd.remove();
-                } else {
-                    document.body.classList.add('sb-sidenav-open');
-                    // Add Backdrop
-                    const backdrop = document.createElement('div');
-                    backdrop.id = 'sidebar-backdrop';
-                    backdrop.className = 'sidebar-backdrop';
-                    backdrop.addEventListener('click', () => {
-                         document.body.classList.remove('sb-sidenav-open');
-                         backdrop.remove();
-                    });
-                    document.body.appendChild(backdrop);
-                }
+            if (body.classList.contains('sb-sidenav-open')) {
+                // CLOSE Sidebar
+                body.classList.remove('sb-sidenav-open');
+                removeBackdrop();
             } else {
-                // DESKTOP: Toggle Collapse
-                document.body.classList.toggle('sb-sidenav-collapsed');
+                // OPEN Sidebar
+                body.classList.add('sb-sidenav-open');
+                addBackdrop();
             }
-        });
-    }
+        } else {
+            // Desktop Logic
+            document.body.classList.toggle('sb-sidenav-collapsed');
+        }
+    });
 }
 
-// Helper: Create the dark overlay for mobile
+// Helper: Add Backdrop
 function addBackdrop() {
-    // Prevent multiple backdrops
-    if (document.getElementById('sidebar-backdrop')) return;
+    if (document.getElementById('sidebar-backdrop')) return; // Prevent duplicates
 
     const backdrop = document.createElement('div');
     backdrop.id = 'sidebar-backdrop';
-    backdrop.className = 'sidebar-backdrop'; // Uses your existing CSS
+    backdrop.className = 'sidebar-backdrop';
     
-    // Close sidebar when clicking the background
+    // Close sidebar when clicking outside
     backdrop.addEventListener('click', () => {
         document.body.classList.remove('sb-sidenav-open');
         removeBackdrop();
@@ -61,39 +54,16 @@ function addBackdrop() {
     document.body.appendChild(backdrop);
 }
 
-// Helper: Remove the dark overlay
-function removeBackdrop() {
-    const backdrop = document.getElementById('sidebar-backdrop');
-    if (backdrop) backdrop.remove();
-}
-
-// Helper to add dark overlay on mobile
-function addBackdrop() {
-    // Check if backdrop already exists
-    if (document.getElementById('sidebar-backdrop')) return;
-
-    const backdrop = document.createElement('div');
-    backdrop.id = 'sidebar-backdrop';
-    backdrop.className = 'sidebar-backdrop'; 
-    
-    // Clicking backdrop closes sidebar
-    backdrop.addEventListener('click', () => {
-        document.body.classList.remove('sb-sidenav-open');
-        backdrop.remove();
-    });
-    
-    document.body.appendChild(backdrop);
-}
-
-// Helper to remove backdrop
+// Helper: Remove Backdrop
 function removeBackdrop() {
     const backdrop = document.getElementById('sidebar-backdrop');
     if (backdrop) backdrop.remove();
 }
 
 function initThemeSwitcher() {
-    // 1. ALWAYS apply the saved theme on load (for all pages)
+    const select = document.getElementById('themeSelect');
     const storedTheme = localStorage.getItem('crs_theme') || 'auto';
+    
     const applyTheme = (theme) => {
         let effectiveTheme = theme;
         if (theme === 'auto') {
@@ -101,37 +71,32 @@ function initThemeSwitcher() {
         }
         document.documentElement.setAttribute('data-bs-theme', effectiveTheme);
     };
-    applyTheme(storedTheme); // Apply immediately
+    
+    applyTheme(storedTheme);
 
-    // 2. IF the dropdown exists (Settings page), so it will sync it
-    const select = document.getElementById('themeSelect');
-    if (select) {
+    if(select) {
         select.value = storedTheme;
         select.addEventListener('change', function() {
-            const selectedTheme = this.value;
-            localStorage.setItem('crs_theme', selectedTheme);
-            applyTheme(selectedTheme);
+            localStorage.setItem('crs_theme', this.value);
+            applyTheme(this.value);
         });
     }
 
-    // 3. Listen for system changes (if auto is selected)
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
         if (localStorage.getItem('crs_theme') === 'auto') applyTheme('auto');
     });
 }
 
-// --- INITIALIZE EVERYTHING ON LOAD ---
+// --- INITIALIZE ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Render all tables
-    renderCars();
-    renderRentals();
-    renderCustomers();
-    renderMaintenance();
-    renderActivity(); 
+    if (typeof renderCars === 'function') renderCars();
+    if (typeof renderRentals === 'function') renderRentals();
+    if (typeof renderCustomers === 'function') renderCustomers();
+    if (typeof renderMaintenance === 'function') renderMaintenance();
+    if (typeof renderActivity === 'function') renderActivity();
 
-    // 2. Initialize Dashboard & UI
-    updateKPIs();
-    initCharts(); 
+    if (typeof updateKPIs === 'function') updateKPIs();
+    if (typeof initCharts === 'function') initCharts(); 
     initSidebarToggle();
     initThemeSwitcher();
 });

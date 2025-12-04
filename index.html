@@ -1,59 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - GoMotion</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome - GoMotion</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        body {
-            background-color: #f8f9fa;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .login-card {
-            max-width: 400px;
-            width: 100%;
-            border: none;
-            border-radius: 15px;
-        }
+      body {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .main-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .auth-card {
+        max-width: 420px;
+        width: 100%;
+        border: none;
+        border-radius: 20px;
+        overflow: hidden;
+      }
     </style>
-</head>
-<body>
-
-    <div class="card login-card shadow-lg p-4">
+  </head>
+  <body>
+    <div class="main-content">
+      <div class="card auth-card shadow-lg p-4">
         <div class="card-body">
-            <div class="text-center mb-4">
-                <h3 class="text-primary fw-bold">Car Rental System</h3>
-                <p class="text-muted small">IMS566 Project Prototype</p>
-            </div>
+          <div class="text-center mb-4">
+            <h4
+              class="fw-bold mb-1 text-rgb"
+              style="font-size: 2rem; letter-spacing: 1px"
+            >
+              GoMotion
+            </h4>
+            <p class="text-muted small">Gomotion Rental System</p>
+          </div>
 
+          <div id="loginSection">
             <form id="loginForm">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="admin" required>
+              <div class="mb-3">
+                <label class="form-label small fw-bold text-muted"
+                  >USERNAME</label
+                >
+                <div class="input-group">
+                  <span class="input-group-text bg-light border-end-0"
+                    ><i class="fas fa-user text-muted"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control border-start-0 ps-0 bg-light"
+                    id="username"
+                    placeholder="Enter username"
+                    required
+                  />
                 </div>
-                <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="••••••" required>
-                    </div>
-
-                    <div id="errorMsg" class="alert alert-danger py-2 text-center d-none" role="alert">
-                        Invalid credentials. Please try again.
+              </div>
+              <div class="mb-4">
+                <label class="form-label small fw-bold text-muted"
+                  >PASSWORD</label
+                >
+                <div class="input-group">
+                  <span class="input-group-text bg-light border-end-0"
+                    ><i class="fas fa-lock text-muted"></i
+                  ></span>
+                  <input
+                    type="password"
+                    class="form-control border-start-0 ps-0 bg-light"
+                    id="password"
+                    placeholder="••••••••"
+                    required
+                  />
+                  <button
+                    class="btn btn-light border border-start-0"
+                    type="button"
+                    onclick="togglePassword('password', this)"
+                  >
+                    <i class="fas fa-eye-slash text-muted"></i>
+                  </button>
                 </div>
+                <div class="text-end mt-2">
+                  <a href="#" class="text-decoration-none small text-primary"
+                    >Forgot Password?</a
+                  >
+                </div>
+              </div>
 
-                <button type="submit" class="btn btn-primary w-100 fw-bold">Sign In</button>
+              <div
+                id="errorMsg"
+                class="alert alert-danger py-2 text-center d-none small mb-3"
+                role="alert"
+              >
+                Invalid credentials. Please try again.
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-primary w-100 fw-bold py-2 rounded-pill shadow-sm mb-3"
+              >
+                Sign In <i class="fas fa-arrow-right ms-2"></i>
+              </button>
+
+              <div class="text-center">
+                <span class="text-muted small">New to GoMotion?</span>
+                <a
+                  href="#"
+                  class="text-decoration-none fw-bold ms-1"
+                  onclick="toggleForms()"
+                  >Create Account</a
+                >
+              </div>
             </form>
-            
-            <div class="mt-3 text-center">
-                <small class="text-muted">For example: admin / 1234</small>
-            </div>
+          </div>
+
+          <div id="registerSection" class="d-none">
+            <form id="registerForm">
+              <div class="row g-2 mb-3">
+                <div class="col-6">
+                  <label class="form-label small fw-bold text-muted"
+                    >FIRST NAME</label
+                  >
+                  <input type="text" class="form-control bg-light" required />
+                </div>
+                <div class="col-6">
+                  <label class="form-label small fw-bold text-muted"
+                    >LAST NAME</label
+                  >
+                  <input type="text" class="form-control bg-light" required />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label small fw-bold text-muted"
+                  >EMAIL ADDRESS</label
+                >
+                <input
+                  type="email"
+                  class="form-control bg-light"
+                  placeholder="name@company.com"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label class="form-label small fw-bold text-muted"
+                  >CREATE PASSWORD</label
+                >
+                <div class="input-group">
+                  <input
+                    type="password"
+                    class="form-control bg-light"
+                    id="regPassword"
+                    placeholder="••••••••"
+                    required
+                  />
+                  <button
+                    class="btn btn-light border"
+                    type="button"
+                    onclick="togglePassword('regPassword', this)"
+                  >
+                    <i class="fas fa-eye-slash text-muted"></i>
+                  </button>
+                </div>
+                <small class="text-muted" style="font-size: 0.75rem"
+                  >Must be at least 8 characters.</small
+                >
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-success w-100 fw-bold py-2 rounded-pill shadow-sm mb-3"
+              >
+                Create Account
+              </button>
+
+              <div class="text-center">
+                <span class="text-muted small">Already have an ID?</span>
+                <a
+                  href="#"
+                  class="text-decoration-none fw-bold ms-1"
+                  onclick="toggleForms()"
+                  >Back to Login</a
+                >
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/logic.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/render.js"></script>
+  </body>
 </html>

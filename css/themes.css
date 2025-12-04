@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+:root {
+  /* Primary: Deep Indigo */
+  --primary-color: #4f46e5;
+
+  /* Sidebar: Very Dark Slate/Black */
+  --sidebar-bg: #1e293b;
+  --sidebar-hover: #334155;
+
+  /* Background: Cool Gray */
+  --bg-color: #f8fafc;
+
+  /* Text */
+  --text-light: #f1f5f9;
+  --text-muted: #94a3b8;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-color);
+  overflow-x: hidden;
+}
+
+/* =========================================
+   DARK MODE OVERRIDES
+   ========================================= */
+[data-bs-theme="dark"] {
+  --bg-color: #0f172a; /* Very dark blue/slate */
+  --sidebar-bg: #020617; /* Black-ish sidebar */
+  --card-bg: #1e293b; /* Dark card background */
+  --text-main: #f8fafc; /* White text */
+  --text-muted: #94a3b8; /* Gray text */
+  --border-color: #334155; /* Dark borders */
+}
+
+/* Apply dark variables */
+[data-bs-theme="dark"] body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+[data-bs-theme="dark"] .card,
+[data-bs-theme="dark"] .stat-card,
+[data-bs-theme="dark"] .chart-container,
+[data-bs-theme="dark"] .navbar,
+[data-bs-theme="dark"] .list-group-item,
+[data-bs-theme="dark"] footer {
+  background-color: var(--card-bg) !important;
+  color: var(--text-main);
+  border-color: var(--border-color) !important;
+}
+
+/* Specific fixes for Dark Mode Text */
+[data-bs-theme="dark"] h1,
+[data-bs-theme="dark"] h2,
+[data-bs-theme="dark"] h3,
+[data-bs-theme="dark"] h4,
+[data-bs-theme="dark"] h5,
+[data-bs-theme="dark"] .fw-bold.text-dark {
+  color: var(--text-main) !important;
+}
+
+[data-bs-theme="dark"] .text-muted,
+[data-bs-theme="dark"] .text-secondary {
+  color: var(--text-muted) !important;
+}
+
+/* Fix Tables in Dark Mode */
+[data-bs-theme="dark"] .table {
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+[data-bs-theme="dark"] .table-light {
+  background-color: #0f172a;
+  color: var(--text-main);
+}
+[data-bs-theme="dark"] .table thead th {
+  background-color: #0f172a;
+  color: var(--text-muted);
+  border-color: var(--border-color);
+}
+[data-bs-theme="dark"] .table-hover tbody tr:hover {
+  background-color: #334155;
+}
+
+/* Fix Form Inputs */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}

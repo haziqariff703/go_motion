@@ -6,7 +6,7 @@
 .auth-card .form-control:focus {
   box-shadow: none;
   border-color: var(--primary-color);
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 .auth-card .input-group-text {

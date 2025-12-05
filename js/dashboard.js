@@ -35,7 +35,6 @@ function updateKPIs() {
 // --- CHARTS & GRAPHS ---
 function initCharts() {
     // 1. DETERMINE THEME COLOR
-    // Check if dark mode is active in storage OR system settings
     const isDark = localStorage.getItem('crs_theme') === 'dark' || 
                    (!localStorage.getItem('crs_theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
     
@@ -62,7 +61,7 @@ function initCharts() {
                 type: 'area', 
                 height: 350, 
                 toolbar: { show: false },
-                foreColor: textColor // <--- FIXES TEXT COLOR
+                foreColor: textColor 
             },
             colors: ['#4f46e5'],
             dataLabels: { enabled: false },
@@ -81,7 +80,7 @@ function initCharts() {
         window.revenueChartInstance.render();
     }
 
-    // 3. FLEET STATUS CHART
+    // 3. FLEET STATUS CHART (Fixed: Adds Center Label)
     const statusEl = document.querySelector("#statusChart");
     if (statusEl) {
         let statusCounts = [0, 0, 0];
@@ -99,9 +98,40 @@ function initCharts() {
             chart: { 
                 type: 'donut', 
                 height: 320,
-                foreColor: textColor // <--- FIXES TEXT COLOR
+                foreColor: textColor 
             },
             colors: ['#10b981', '#f59e0b', '#ef4444'],
+            // --- THIS ADDS THE PERCENTAGE IN THE MIDDLE ---
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '70%',
+                        labels: {
+                            show: true,
+                            name: { show: true, fontSize: '14px' },
+                            value: { 
+                                show: true, 
+                                fontSize: '22px', 
+                                fontWeight: 600,
+                                color: textColor 
+                            },
+                            total: {
+                                show: true,
+                                showAlways: true,
+                                label: 'Availability',
+                                color: textColor,
+                                formatter: function (w) {
+                                    const total = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                                    const available = w.globals.seriesTotals[0]; // Index 0 = Available
+                                    if(total === 0) return "0%";
+                                    return Math.round((available / total) * 100) + "%";
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            // ----------------------------------------------
             dataLabels: { enabled: false },
             legend: { position: 'bottom' },
             tooltip: { theme: isDark ? 'dark' : 'light' }
@@ -133,7 +163,7 @@ function initCharts() {
                 type: 'bar', 
                 height: 300, 
                 toolbar: { show: false },
-                foreColor: textColor // <--- FIXES TEXT COLOR
+                foreColor: textColor 
             },
             colors: ['#4f46e5'],
             plotOptions: { bar: { borderRadius: 4, horizontal: true, barHeight: '50%' } },

@@ -106,23 +106,25 @@ Password: 1234
 
 ## 📂 Project Structure
 
+```text
 /
-├── index.html # Login Page
-├── dashboard.html # Main Overview (Charts & KPIs)
-├── cars.html # Vehicle Inventory
-├── rentals.html # Rental Transaction Logs
-├── customers.html # Customer Database
-├── maintenance.html # Service Logs
-├── profile.html # Admin Profile
-├── settings.html # System Settings (Theme/Reset)
+├── index.html          # Login Page (Entry Point)
+├── dashboard.html      # Main Dashboard (KPIs & Charts)
+├── cars.html           # Vehicle Inventory Page
+├── rentals.html        # Rental Transaction Logs
+├── customers.html      # Customer Database
+├── maintenance.html    # Service & Repair Logs
+├── profile.html        # Admin Profile Settings
+├── settings.html       # System Configuration
 ├── css/
-│ ├── style.css # Layout & Component Styles
-│ └── themes.css # Color Variables & Dark Mode
+│   ├── style.css       # Main Layout & Component Styles
+│   └── themes.css      # Color Variables & Dark Mode Logic
 ├── js/
-│ ├── auth.js # Login/Logout Logic
-│ ├── data.js # LocalStorage Data Engine
-│ ├── dashboard.js # Charts & Statistics
-│ ├── logic.js # CRUD Operations
-│ ├── main.js # Sidebar & Global Init
-│ └── render.js # HTML Table Generators
-└── images/ # Assets
+│   ├── auth.js         # Login/Logout & Session Logic
+│   ├── dashboard.js    # Charts & KPI Calculations
+│   ├── data.js         # Data Storage (LocalStorage Engine)
+│   ├── logic.js        # CRUD Operations (Add/Edit/Delete)
+│   ├── main.js         # Global Initialization & Sidebar Logic
+│   └── render.js       # HTML Table Generators
+└── images/             # Assets (Car photos, User avatars, Logo)
+```

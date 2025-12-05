@@ -55,7 +55,7 @@ function closeSidebar() {
 // 3. Theme Switcher
 function initThemeSwitcher() {
     const select = document.getElementById('themeSelect');
-    const storedTheme = localStorage.getItem('crs_theme') || 'auto';
+    const storedTheme = localStorage.getItem('crs_theme') || 'light';
     
     const applyTheme = (theme) => {
         let effectiveTheme = theme;

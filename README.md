@@ -34,17 +34,17 @@ This project demonstrates **Advanced Front-End Development** skills by using dyn
 ### 1. Secure Login
 
 _(Authentication page with validation and error handling)_
-![Login Page](screenshots/login.png)
+![Login Page](images/login.png)
 
 ### 2. Admin Dashboard
 
 _(Real-time KPIs, revenue charts, and fleet availability status)_
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](images/dashboard.png)
 
 ### 3. Fleet Management
 
 _(Inventory list with status filtering and management actions)_
-![Cars List](screenshots/cars.png)
+![Cars List](images/cars.png)
 
 ---
 

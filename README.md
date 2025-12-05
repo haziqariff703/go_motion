@@ -1,6 +1,20 @@
-# GoMotion - Car Rental Management System (IMS566)
+# GoMotion - Car Rental Management System
+
+**Course:** IMS566 - Advanced Web Design Development and Content Management
+**Program:** CDIM262 - Bachelor of Information Science (Hons.) Information System Management
+**Institution:** Universiti Teknologi MARA (UiTM), Puncak Perdana
+
+---
+
+## 👨‍💻 Developed By
+
+- **Muhammad Haziq**
+- **Safa Raziq**
+
+---
 
 ## 📖 Project Description
+
 **GoMotion** is a modern, web-based administration dashboard designed for car rental businesses. It provides a seamless interface for managing vehicle fleets, tracking rental history, and monitoring financial performance in real-time.
 
 This project demonstrates advanced front-end development skills, utilizing dynamic DOM manipulation to simulate a real-world application environment without a backend database.
@@ -10,11 +24,13 @@ This project demonstrates advanced front-end development skills, utilizing dynam
 ## 🚀 Key Features
 
 ### 🔐 Authentication & Security
+
 - **Secure Login:** Simulated authentication system with credential validation.
 - **Session Management:** Prevents access to internal pages without logging in (via LocalStorage).
 - **Logout Safety:** Includes a confirmation modal to prevent accidental logouts.
 
 ### 📊 Interactive Dashboard
+
 - **Real-Time KPIs:** Automatically calculates Total Fleet, Active Rentals, and Revenue based on data.
 - **Data Visualization:**
   - **Revenue Area Chart:** Visualizes monthly income trends.
@@ -23,12 +39,14 @@ This project demonstrates advanced front-end development skills, utilizing dynam
 - **Recent Activity:** A dynamic log showing user actions and system alerts.
 
 ### 🚗 Fleet & Rental Management
+
 - **Dynamic Tables:** All data (Cars, Rentals, Customers) is rendered via JavaScript, making it easy to scale.
 - **Smart Filtering:** Dropdown filters to quickly view Available, Rented, or Maintenance vehicles.
 - **Status Indicators:** Color-coded badges (e.g., Green for "Paid", Red for "Maintenance") for instant status recognition.
 - **CRUD Actions:** Functional "Delete" buttons to remove records from the view.
 
 ### 🎨 UI/UX Design
+
 - **"GoMotion" Theme:** A custom Teal & Dark Blue color scheme for a professional look.
 - **Responsive Sidebar:** Collapsible navigation that works on Desktop and Mobile.
 - **Dark Mode:** Fully functional theme switcher (Light / Dark / Auto) that persists user preference.
@@ -36,6 +54,7 @@ This project demonstrates advanced front-end development skills, utilizing dynam
 ---
 
 ## 🛠️ Tech Stack
+
 - **HTML5:** Semantic structure.
 - **CSS3:** Custom styling + **Bootstrap 5.3** framework.
 - **JavaScript (ES6):** Core logic for data processing, DOM manipulation, and interactivity.
@@ -45,18 +64,22 @@ This project demonstrates advanced front-end development skills, utilizing dynam
 ---
 
 ## 💻 How to Run
+
 1. **Download** or **Clone** this repository.
-2. Open the project folder.
-3. Double-click `index.html` to open it in your web browser (Chrome recommended).
-4. Login using the credentials below.
+2. Access this link for Github Pages Live: https://haziqariff703.github.io/go_motion/
+3. Open the project folder.
+4. Double-click `index.html` to open it in your web browser (Google Chrome recommended).
+5. Login using the credentials below.
 
 ### 🔑 Demo Credentials
+
 - **Username:** `admin`
 - **Password:** `1234`
 
 ---
 
 ## 📂 Project Structure
+
 ```text
 /
 ├── index.html          # Login Page
@@ -67,6 +90,15 @@ This project demonstrates advanced front-end development skills, utilizing dynam
 ├── maintenance.html    # Service & Repair Logs
 ├── profile.html        # Admin Profile Settings
 ├── settings.html       # System Configuration (Theme/Notifications)
-├── style.css           # Custom Styles & Theming
-├── script.js           # Core Logic (Auth, Data, Charts)
+├── css/
+│   ├── style.css       # Custom Styles
+│   └── themes.css      # Color Variables & Dark Mode Logic
+├── js/
+│   ├── auth.js         # Login/Logout Logic
+│   ├── data.js         # Data Storage (LocalStorage)
+│   ├── dashboard.js    # Charts & Analytics
+│   ├── logic.js        # CRUD Operations
+│   ├── main.js         # Sidebar & Theme Initialization
+│   └── render.js       # HTML Table Generators
 └── images/             # Car & User avatars
+```

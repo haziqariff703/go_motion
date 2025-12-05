@@ -41,7 +41,7 @@ const defaultCustomerData = [
     { id: 'C-103', name: 'Muthu Kumar', email: 'muthu@email.com', phone: '+6017-777 6666', joinDate: '20 Mar 2024', status: 'Verified', avatar: 'https://ui-avatars.com/api/?name=Muthu+Kumar&background=random' },
     { id: 'C-104', name: 'Jenny Lo', email: 'jenny@email.com', phone: '+6012-222 3333', joinDate: '05 Apr 2024', status: 'Rejected', avatar: 'https://ui-avatars.com/api/?name=Jenny+Lo&background=random' },
     { id: 'C-105', name: 'David Lee', email: 'david@email.com', phone: '+6013-555 4444', joinDate: '10 May 2024', status: 'Verified', avatar: 'https://ui-avatars.com/api/?name=David+Lee&background=random' },
-    { id: 'C-106', name: 'Aishah Binti Omar', email: 'aishah@email,com', phone: '+6014-123 4567', joinDate: '22 Jun 2024', status: 'Pending', avatar: 'https://ui-avatars.com/api/?name=Aishah+Binti+Omar&background=random' },
+    { id: 'C-106', name: 'Aishah Binti Omar', email: 'aishah@email.com', phone: '+6014-123 4567', joinDate: '22 Jun 2024', status: 'Pending', avatar: 'https://ui-avatars.com/api/?name=Aishah+Binti+Omar&background=random' },
     { id: 'C-107', name: 'Zulfadli Jumaat', email: 'pali@email.com', phone: '+6018-765 4321', joinDate: '30 Jul 2024', status: 'Verified', avatar: 'https://ui-avatars.com/api/?name=Zulfadli+Jumaat&background=random' }
 ];
 

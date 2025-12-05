@@ -1,4 +1,8 @@
-// UI Helpers
+// =========================================
+// GLOBAL UI HELPERS & INITIALIZATION
+// =========================================
+
+// 1. Filter Helper
 function filterCarStatus(status) {
     const rows = document.querySelectorAll('#carsTableBody tr');
     rows.forEach(row => {
@@ -9,17 +13,15 @@ function filterCarStatus(status) {
     });
 }
 
-// --- SIDEBAR TOGGLE LOGIC ---
+// 2. Sidebar Toggle Logic (Mobile & Desktop)
 function initSidebarToggle() {
     const toggle = document.getElementById('menu-toggle');
-    
     if (toggle) {
         toggle.addEventListener('click', (e) => {
             e.preventDefault();
             
-            // Check if Mobile (Screen < 768px)
+            // Mobile Logic (< 768px)
             if (window.innerWidth < 768) {
-                // Mobile Logic
                 if (document.body.classList.contains('sb-sidenav-open')) {
                     closeSidebar();
                 } else {
@@ -35,13 +37,10 @@ function initSidebarToggle() {
 
 function openSidebar() {
     document.body.classList.add('sb-sidenav-open');
-    
-    // Create Backdrop
     if (!document.getElementById('sidebar-backdrop')) {
         const backdrop = document.createElement('div');
         backdrop.id = 'sidebar-backdrop';
         backdrop.className = 'sidebar-backdrop';
-        // CLICKING BACKDROP CLOSES SIDEBAR
         backdrop.addEventListener('click', closeSidebar);
         document.body.appendChild(backdrop);
     }
@@ -53,6 +52,7 @@ function closeSidebar() {
     if (backdrop) backdrop.remove();
 }
 
+// 3. Theme Switcher
 function initThemeSwitcher() {
     const select = document.getElementById('themeSelect');
     const storedTheme = localStorage.getItem('crs_theme') || 'auto';
@@ -67,7 +67,7 @@ function initThemeSwitcher() {
     
     applyTheme(storedTheme);
 
-    if(select) {
+    if (select) {
         select.value = storedTheme;
         select.addEventListener('change', function() {
             localStorage.setItem('crs_theme', this.value);
@@ -80,8 +80,9 @@ function initThemeSwitcher() {
     });
 }
 
-// --- INITIALIZE ---
+// 4. Main Initialization
 document.addEventListener('DOMContentLoaded', () => {
+    // Only run these if the functions exist (prevents errors on index.html)
     if (typeof renderCars === 'function') renderCars();
     if (typeof renderRentals === 'function') renderRentals();
     if (typeof renderCustomers === 'function') renderCustomers();
@@ -93,3 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initSidebarToggle();
     initThemeSwitcher();
 });
+
+function resetSystem() {
+    if(confirm("Are you sure? This will wipe all your changes and restore default data.")) {
+        localStorage.clear();
+        window.location.reload();
+    }
+}

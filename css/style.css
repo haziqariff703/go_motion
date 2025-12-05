@@ -1,8 +1,6 @@
 /* =========================================
-   LOGIN PAGE & ANIMATIONS
+   1. LOGIN PAGE & ANIMATIONS
    ========================================= */
-
-/* 1. Form Inputs */
 .auth-card .form-control:focus {
   box-shadow: none;
   border-color: var(--primary-color);
@@ -13,7 +11,7 @@
   border-right: none;
 }
 
-/* 2. RGB TEXT EFFECT FOR GOMOTION IN INDEX */
+/* RGB TEXT EFFECT */
 .text-rgb {
   background: linear-gradient(
     90deg,
@@ -32,38 +30,6 @@
   background-clip: text;
   color: transparent;
   animation: rgbFlow 10s linear infinite;
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
-}
-
-@keyframes rgbFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
-/* RGB TEXT EFFECT FOR H5 */
-.text-rgb {
-  background: linear-gradient(
-    90deg,
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000
-  );
-  background-size: 400%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: rgbFlow 10s linear infinite;
-
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
 }
 
@@ -76,9 +42,9 @@
   }
 }
 
-/* SIDEBAR DESIGN */
-
-/* Sidebar Brand Header */
+/* =========================================
+   2. SIDEBAR DESIGN (Desktop Default)
+   ========================================= */
 .sidebar-brand {
   height: 90px;
   padding: 1rem;
@@ -91,7 +57,6 @@
   text-transform: uppercase;
 }
 
-/* Sidebar Wrapper */
 #sidebar-wrapper {
   min-height: 100vh;
   width: 250px;
@@ -104,7 +69,6 @@
   z-index: 1000;
 }
 
-/* User Profile Section */
 .sidebar-profile {
   padding-top: 20px;
   border-top: none;
@@ -131,7 +95,6 @@
   color: #fff;
   margin: 0;
 }
-
 .profile-info small {
   display: block;
   color: var(--text-muted);
@@ -139,13 +102,11 @@
   letter-spacing: 1px;
   margin-top: 5px;
 }
-
 .profile-info .id-text {
   color: var(--primary-color);
   font-weight: 600;
 }
 
-/* Navigation Label */
 .sidebar-label {
   padding: 10px 25px;
   font-size: 0.75rem;
@@ -155,7 +116,6 @@
   letter-spacing: 1px;
 }
 
-/* Menu Links */
 #sidebar-wrapper .list-group-item {
   background-color: transparent;
   color: var(--text-light);
@@ -174,32 +134,28 @@
   text-align: center;
   color: var(--text-muted);
 }
-
 #sidebar-wrapper .list-group-item:hover {
   background-color: var(--sidebar-hover);
   color: #fff;
   border-left-color: var(--text-muted);
 }
-
 #sidebar-wrapper .list-group-item.active {
   background-color: rgba(0, 0, 0, 0.2);
   color: #fff;
   border-left-color: var(--primary-color);
 }
-
 #sidebar-wrapper .list-group-item.active i {
   color: var(--primary-color);
 }
 
 /* =========================================
-   COMPONENTS (Cards, Charts, Tables)
+   3. COMPONENTS (Cards, Charts, Tables)
    ========================================= */
 #page-content-wrapper {
   width: 100%;
   transition: all 0.25s ease;
 }
 
-/* Card Styling */
 .stat-card {
   background: white;
   border: none;
@@ -207,7 +163,6 @@
   box-shadow: var(--card-shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .stat-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--hover-shadow);
@@ -223,7 +178,6 @@
   font-size: 1.5rem;
 }
 
-/* Chart Container */
 .chart-container {
   background: white;
   border-radius: 16px;
@@ -231,7 +185,6 @@
   box-shadow: var(--card-shadow);
 }
 
-/* Table Styling */
 .table-custom thead th {
   background-color: #f8fafc;
   color: #64748b;
@@ -248,7 +201,6 @@
   background-color: #f1f5f9;
 }
 
-/* Generic Table Header Fix */
 .container table.table thead th,
 .container-fluid table.table thead th {
   background-color: #f8fafc;
@@ -260,28 +212,25 @@
   border-bottom: 2px solid #e2e8f0;
 }
 
-/* Image Handling in Tables */
 .table-custom img {
   width: 80px;
-  height: 45px; /* Fixed height */
-  object-fit: cover; /* Prevents stretching */
+  height: 45px;
+  object-fit: cover;
   border-radius: 6px;
 }
 
 /* =========================================
-   NAVBAR STYLING (Teal Theme)
+   4. NAVBAR STYLING
    ========================================= */
 .navbar-teal {
   background-color: var(--primary-color) !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 .navbar-teal .navbar-brand,
 .navbar-teal .nav-link,
 .navbar-teal i {
   color: #fff !important;
 }
-
 .navbar-teal .btn-light {
   background: rgba(255, 255, 255, 0.2);
   border: none;
@@ -289,15 +238,11 @@
 }
 
 /* =========================================
-   COLLAPSED & MOBILE STATE LOGIC
+   5. COLLAPSED STATE (Desktop Mini-Sidebar)
    ========================================= */
-
-/* DESKTOP: Collapsed State */
 body.sb-sidenav-collapsed #sidebar-wrapper {
   width: 70px;
 }
-
-/* Hide Profile & Text when collapsed */
 body.sb-sidenav-collapsed .sidebar-profile,
 body.sb-sidenav-collapsed .sidebar-label,
 body.sb-sidenav-collapsed .menu-text,
@@ -305,191 +250,34 @@ body.sb-sidenav-collapsed .sidebar-brand .brand-text {
   display: none !important;
 }
 
-/* Center Icons when collapsed */
 body.sb-sidenav-collapsed #sidebar-wrapper .list-group-item {
   padding: 15px 0;
   justify-content: center;
 }
-
 body.sb-sidenav-collapsed #sidebar-wrapper .list-group-item i {
   margin-right: 0;
   font-size: 1.4rem;
 }
-
-/* Adjust Content */
 body.sb-sidenav-collapsed #page-content-wrapper {
   margin-left: 0;
 }
 
 /* =========================================
-   MOBILE RESPONSIVENESS FIXES
+   6. FOOTER STYLES
    ========================================= */
-@media (max-width: 768px) {
-  /* 1. Reduce spacing on mobile so content isn't squished */
-  .container-fluid.px-4 {
-    padding-left: 1.5rem !important; /* Standard Bootstrap gutter (px-3) */
-    padding-right: 1.5rem !important;
-  }
-
-  /* 2. Make Footer links sit side-by-side (2 per row) instead of 1 per row */
-  .site-footer .col-lg-2 {
-    width: 50% !important; /* Forces 2 columns per row */
-    flex: 0 0 auto;
-    margin-bottom: 2rem !important;
-  }
-
-  /* 3. Fix Navbar alignment */
-  .navbar-teal {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-
-  /* 4. Ensure Sidebar backdrop covers everything */
-  .sidebar-backdrop {
-    z-index: 1040; /* Below sidebar (1050) but above content */
-  }
-
-  /* 5. Fix Chart Containers overflowing */
-  .chart-container {
-    padding: 1rem !important;
-    overflow: hidden; /* Prevents horizontal scrolling */
-  }
-
-  /* 6. Adjust Stats Cards */
-  .stat-card {
-    margin-bottom: 0; /* Let grid handle spacing */
-  }
-}
-
-/* === MOBILE DROPDOWN FIXES === */
-
-/* 1. Allow the dropdown to spill out of the navbar */
-.navbar {
-  overflow: visible !important;
-  position: relative;
-  z-index: 1060; /* Higher than sidebar */
-}
-
-/* 2. Force the dropdown to float on top */
-.navbar .dropdown-menu {
-  position: absolute !important;
-  z-index: 1070 !important; /* Highest thing on page */
-  right: 10px; /* Small gap from right edge */
-  left: auto;
-  top: 100%; /* Directly below the text */
-  min-width: 200px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Strong shadow to see it */
-}
-
-/* Ensure the Navbar itself allows spilling over */
-.navbar {
-  overflow: visible !important;
-}
-
-/* === CRITICAL MOBILE FIXES === */
-
-/* 1. Allow dropdown to be visible on mobile */
-.navbar {
-  overflow: visible !important;
-  position: relative;
-  z-index: 1060;
-}
-
-/* 2. Ensure dropdown sits on top */
-.navbar .dropdown-menu {
-  position: absolute !important;
-  z-index: 9999 !important;
-  right: 0;
-  left: auto;
-  min-width: 200px;
-}
-
-/* 3. Mobile padding tweaks */
-@media (max-width: 768px) {
-  .container-fluid.px-4 {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-}
-
-/* =========================================
-   MOBILE RESPONSIVENESS FIXES
-   ========================================= */
-@media (max-width: 768px) {
-  /* 1. Sidebar: HIGHEST Priority (Sits on top of everything) */
-  #sidebar-wrapper {
-    margin-left: -250px;
-    position: fixed;
-    height: 100vh;
-    z-index: 1080 !important; /* Fixes "Ugly" (Now above Navbar) */
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
-  }
-
-  /* 2. Backdrop: MIDDLE Priority (Covers Navbar so you can click to close) */
-  .sidebar-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1070 !important; /* Fixes "Can't Close" */
-    backdrop-filter: blur(2px);
-  }
-
-  body.sb-sidenav-open #sidebar-wrapper {
-    margin-left: 0;
-  }
-
-  /* Layout Fixes */
-  .container-fluid.px-4 {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-  .navbar-teal {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-  .col-md-6.mb-4 {
-    margin-bottom: 1.5rem !important;
-  }
-  .site-footer .col-6 {
-    width: 50% !important;
-  }
-}
-
-/* Dropdown Fixes */
-.navbar {
-  overflow: visible !important;
-  position: relative;
-  z-index: 1060; /* Stays below sidebar on mobile */
-}
-.navbar .dropdown-menu {
-  position: absolute !important;
-  z-index: 2000 !important; /* Dropdown itself stays high */
-  right: 0;
-  left: auto;
-  min-width: 200px;
-}
-/* FOOTER */
-
 .site-footer {
   font-size: 0.9rem;
   position: relative;
   z-index: 10;
 }
-
-/* Link Hover Effect */
 .hover-link {
   transition: color 0.2s ease, padding-left 0.2s ease;
 }
-
 .hover-link:hover {
   color: var(--primary-color) !important;
-  padding-left: 5px; /* Slight slide animation */
+  padding-left: 5px;
 }
 
-/* Social Media Buttons - Dark Theme */
 .social-btn {
   width: 36px;
   height: 36px;
@@ -503,13 +291,11 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   transition: all 0.3s ease;
   border: 1px solid rgba(243, 243, 243, 0.725);
 }
-
 .social-btn:hover {
   color: #fff;
   transform: translateY(-3px);
   border-color: transparent;
 }
-
 .social-btn.facebook:hover {
   background-color: #1877f2;
 }
@@ -528,4 +314,75 @@ body.sb-sidenav-collapsed #page-content-wrapper {
 }
 .social-btn.linkedin:hover {
   background-color: #0077b5;
+}
+
+/* =========================================
+   7. GLOBAL MOBILE FIXES (Dropdowns & Navbar)
+   ========================================= */
+
+/* Allow the dropdown to spill out of the navbar */
+.navbar {
+  overflow: visible !important;
+  position: relative;
+  z-index: 1060; /* Sits below Sidebar (1080) and Backdrop (1070) */
+}
+
+/* Force dropdown to float on top */
+.navbar .dropdown-menu {
+  position: absolute !important;
+  z-index: 2000 !important; /* Highest priority for menu */
+  right: 0;
+  left: auto;
+  min-width: 200px;
+  margin-top: 10px;
+}
+
+/* =========================================
+   8. MOBILE MEDIA QUERY (Max Width 768px)
+   ========================================= */
+@media (max-width: 768px) {
+  /* Sidebar: Sits on TOP of everything */
+  #sidebar-wrapper {
+    margin-left: -250px;
+    position: fixed;
+    height: 100vh;
+    z-index: 1080 !important;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Backdrop: Sits below Sidebar but ABOVE Navbar */
+  .sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1070 !important;
+    backdrop-filter: blur(2px);
+  }
+
+  body.sb-sidenav-open #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  /* Layout Tweak: Prevent Squishing */
+  .container-fluid.px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .navbar-teal {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Footer Tweak: 2 Columns side-by-side */
+  .site-footer .col-6 {
+    width: 50% !important;
+  }
+
+  .col-md-6.mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
 }

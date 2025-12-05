@@ -28,6 +28,9 @@ function renderCars() {
                 <button class="btn btn-sm btn-light text-primary me-1" onclick="editCar('${car.id}')" title="Edit">
                     <i class="fas fa-edit"></i>
                 </button>
+                <button class="btn btn-sm btn-light text-danger" onclick="deleteCar('${car.id}')" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </button>
             </td>
         </tr>
     `).join('');
@@ -45,6 +48,9 @@ function renderRentals() {
             <td class="fw-bold">${rent.total}</td>
             <td><span class="badge rounded-pill ${rent.status === 'Paid' ? 'bg-success-subtle text-success' : rent.status === 'Pending' ? 'bg-warning-subtle text-warning' : 'bg-secondary-subtle text-secondary'} px-3 py-2">${rent.status}</span></td>
             <td class="text-end pe-4">
+                <button class="btn btn-sm btn-light text-primary me-1" onclick="editRental('${rent.id}')" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </button>
                 <button class="btn btn-sm btn-light text-danger" onclick="deleteRental('${rent.id}')" title="Delete">
                     <i class="fas fa-trash"></i>
                 </button>
@@ -67,7 +73,14 @@ function renderCustomers() {
             <td><div class="text-dark">${cust.email}</div><div class="small text-muted">${cust.phone}</div></td>
             <td class="text-muted">${cust.joinDate}</td>
             <td><span class="badge rounded-pill px-3 py-2 ${cust.status === 'Verified' ? 'bg-success-subtle text-success' : cust.status === 'Pending' ? 'bg-warning-subtle text-warning' : 'bg-danger-subtle text-danger'}">${cust.status}</span></td>
-            <td class="text-end pe-4"><button class="btn btn-sm btn-light text-secondary"><i class="fas fa-edit"></i></button></td>
+            <td class="text-end pe-4">
+                <button class="btn btn-sm btn-light text-primary me-1" onclick="editCustomer('${cust.id}')" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-light text-danger" onclick="deleteCustomer('${cust.id}')" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
         </tr>
     `).join('');
 }

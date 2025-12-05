@@ -5,7 +5,8 @@
 // --- CARS: OPEN & EDIT ---
 function openCarModal() {
     document.getElementById('carForm').reset();
-    document.getElementById('editCarId').value = ""; // Clear ID
+    const editInput = document.getElementById('editCarId');
+    if (editInput) editInput.value = "";
     document.getElementById('carModalLabel').innerText = "Add New Car";
     new bootstrap.Modal(document.getElementById('carModal')).show();
 }
@@ -97,6 +98,8 @@ function populateAvailableCars() {
 
 function openBookingModal() {
     document.getElementById('bookingForm').reset();
+    const editInput = document.getElementById('editRentalId');
+    if (editInput) editInput.value = '';
     populateAvailableCars();
     new bootstrap.Modal(document.getElementById('bookingModal')).show();
 }
@@ -117,15 +120,31 @@ function saveBooking() {
     const dateObj = new Date(startDate);
     const monthIndex = dateObj.getMonth(); 
 
-    rentalData.push({
-        id: 'R' + Date.now().toString().slice(-4),
-        customer: customer,
-        car: carModel,
-        dates: `${startDate} - ${endDate}`,
-        total: `RM ${parseFloat(total).toFixed(2)}`,
-        status: status,
-        month: monthIndex 
-    });
+    const editIdInput = document.getElementById('editRentalId');
+    const editId = editIdInput ? editIdInput.value : '';
+
+    if (editId) {
+        const index = rentalData.findIndex(r => r.id === editId);
+        if (index !== -1) {
+            rentalData[index].customer = customer;
+            rentalData[index].car = carModel;
+            rentalData[index].dates = `${startDate} - ${endDate}`;
+            rentalData[index].total = `RM ${parseFloat(total).toFixed(2)}`;
+            rentalData[index].status = status;
+            rentalData[index].month = monthIndex;
+        }
+        if (editIdInput) editIdInput.value = '';
+    } else {
+        rentalData.push({
+            id: 'R' + Date.now().toString().slice(-4),
+            customer: customer,
+            car: carModel,
+            dates: `${startDate} - ${endDate}`,
+            total: `RM ${parseFloat(total).toFixed(2)}`,
+            status: status,
+            month: monthIndex 
+        });
+    }
 
     saveData();
     renderRentals();
@@ -137,10 +156,13 @@ function saveBooking() {
 // --- CUSTOMERS ---
 function openCustomerModal() {
     document.getElementById('customerForm').reset();
+    const editInput = document.getElementById('customerForm').dataset;
+    delete editInput.editId;
     new bootstrap.Modal(document.getElementById('customerModal')).show();
 }
 
 function saveCustomer() {
+    const form = document.getElementById('customerForm');
     const name = document.getElementById('custName').value;
     const email = document.getElementById('custEmail').value;
     const phone = document.getElementById('custPhone').value;
@@ -148,15 +170,28 @@ function saveCustomer() {
 
     if (!name) { alert("Name required"); return; }
 
-    customerData.push({
-        id: 'C-' + (customerData.length + 101),
-        name: name,
-        email: email,
-        phone: phone,
-        joinDate: new Date().toLocaleDateString('en-GB'),
-        status: status,
-        avatar: `https://ui-avatars.com/api/?name=${name}+${status}&background=random`
-    });
+    const editId = form.dataset.editId;
+    if (editId) {
+        const index = customerData.findIndex(c => c.id === editId);
+        if (index !== -1) {
+            customerData[index].name = name;
+            customerData[index].email = email;
+            customerData[index].phone = phone;
+            customerData[index].status = status;
+            customerData[index].avatar = `https://ui-avatars.com/api/?name=${name}+${status}&background=random`;
+        }
+        delete form.dataset.editId;
+    } else {
+        customerData.push({
+            id: 'C-' + (customerData.length + 101),
+            name: name,
+            email: email,
+            phone: phone,
+            joinDate: new Date().toLocaleDateString('en-GB'),
+            status: status,
+            avatar: `https://ui-avatars.com/api/?name=${name}+${status}&background=random`
+        });
+    }
 
     saveData();
     renderCustomers();
@@ -251,6 +286,35 @@ function deleteMaintenance(index) {
     }
 }
 
+function editCustomer(id) {
+    const cust = customerData.find(c => c.id === id);
+    if (!cust) return;
+
+    document.getElementById('custName').value = cust.name;
+    document.getElementById('custEmail').value = cust.email;
+    document.getElementById('custPhone').value = cust.phone;
+    document.getElementById('custStatus').value = cust.status;
+
+    document.getElementById('customerForm').dataset.editId = id;
+    new bootstrap.Modal(document.getElementById('customerModal')).show();
+}
+
+function deleteCustomer(id) {
+    if (confirm("Delete this customer?")) {
+        customerData = customerData.filter(item => item.id !== id);
+        saveData();
+        renderCustomers();
+    }
+}
+
+function deleteCar(id) {
+    if (confirm("Delete this car?")) {
+        carData = carData.filter(item => item.id !== id);
+        saveData();
+        renderCars();
+    }
+}
+
 function deleteRental(id) {
     if (confirm("Are you sure you want to delete this booking?")) {
         rentalData = rentalData.filter(item => item.id !== id);
@@ -258,4 +322,48 @@ function deleteRental(id) {
         renderRentals();
         if (typeof initCharts === 'function') initCharts();
     }
+}
+
+function editRental(id) {
+    const rent = rentalData.find(r => r.id === id);
+    if (!rent) return;
+
+    const editInput = document.getElementById('editRentalId');
+    if (editInput) editInput.value = rent.id;
+
+    document.getElementById('bookCustomer').value = rent.customer || '';
+
+    // Ensure options exist
+    populateAvailableCars();
+
+    const carSelect = document.getElementById('bookCarModel');
+    let found = false;
+    for (let i = 0; i < carSelect.options.length; i++) {
+        if (carSelect.options[i].value === rent.car) {
+            carSelect.selectedIndex = i;
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        const opt = document.createElement('option');
+        opt.value = rent.car;
+        opt.textContent = rent.car;
+        carSelect.appendChild(opt);
+        carSelect.value = rent.car;
+    }
+
+    if (rent.dates && rent.dates.includes('-')) {
+        const parts = rent.dates.split('-').map(s => s.trim());
+        document.getElementById('bookStartDate').value = parts[0] || '';
+        document.getElementById('bookEndDate').value = parts[1] || '';
+    } else {
+        document.getElementById('bookStartDate').value = '';
+        document.getElementById('bookEndDate').value = '';
+    }
+
+    document.getElementById('bookTotal').value = rent.total ? rent.total.replace(/[^\d.]/g,'') : '';
+    document.getElementById('bookStatus').value = rent.status || 'Pending';
+
+    new bootstrap.Modal(document.getElementById('bookingModal')).show();
 }

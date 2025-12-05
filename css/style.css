@@ -412,6 +412,65 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   }
 }
 
+/* =========================================
+   MOBILE RESPONSIVENESS FIXES
+   ========================================= */
+@media (max-width: 768px) {
+  /* 1. Sidebar: HIGHEST Priority (Sits on top of everything) */
+  #sidebar-wrapper {
+    margin-left: -250px;
+    position: fixed;
+    height: 100vh;
+    z-index: 1080 !important; /* Fixes "Ugly" (Now above Navbar) */
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+  /* 2. Backdrop: MIDDLE Priority (Covers Navbar so you can click to close) */
+  .sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1070 !important; /* Fixes "Can't Close" */
+    backdrop-filter: blur(2px);
+  }
+
+  body.sb-sidenav-open #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  /* Layout Fixes */
+  .container-fluid.px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .navbar-teal {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .col-md-6.mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  .site-footer .col-6 {
+    width: 50% !important;
+  }
+}
+
+/* Dropdown Fixes */
+.navbar {
+  overflow: visible !important;
+  position: relative;
+  z-index: 1060; /* Stays below sidebar on mobile */
+}
+.navbar .dropdown-menu {
+  position: absolute !important;
+  z-index: 2000 !important; /* Dropdown itself stays high */
+  right: 0;
+  left: auto;
+  min-width: 200px;
+}
 /* FOOTER */
 
 .site-footer {

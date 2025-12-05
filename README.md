@@ -1,7 +1,7 @@
 # GoMotion - Car Rental Management System
 
-**Course:** IMS566 - Advanced Web Design Development and Content Management
-**Program:** CDIM262 - Bachelor of Information Science (Hons.) Information System Management
+**Course:** IMS566 - Advanced Web Design Development and Content Management  
+**Program:** CDIM262 - Bachelor of Information Science (Hons.) Information System Management  
 **Institution:** Universiti Teknologi MARA (UiTM), Puncak Perdana
 
 ---
@@ -13,92 +13,116 @@
 
 ---
 
-## 📖 Project Description
+## 🔗 Live Demo
 
-**GoMotion** is a modern, web-based administration dashboard designed for car rental businesses. It provides a seamless interface for managing vehicle fleets, tracking rental history, and monitoring financial performance in real-time.
+🚀 **View Live Site:** [https://haziqariff703.github.io/go_motion/](https://haziqariff703.github.io/go_motion/)
 
-This project demonstrates advanced front-end development skills, utilizing dynamic DOM manipulation to simulate a real-world application environment without a backend database.
+> _Note: Use the credentials below to log in._
 
 ---
 
-## 🚀 Key Features
+## 📖 Project Overview
 
-### 🔐 Authentication & Security
+**GoMotion** is a professional, responsive web-based administration dashboard designed for car rental businesses. It allows fleet managers to track vehicle inventory, monitor active rentals, and visualize financial performance in real-time.
 
-- **Secure Login:** Simulated authentication system with credential validation.
-- **Session Management:** Prevents access to internal pages without logging in (via LocalStorage).
-- **Logout Safety:** Includes a confirmation modal to prevent accidental logouts.
+This project demonstrates **Advanced Front-End Development** skills by using dynamic DOM manipulation and **LocalStorage** to simulate a full-stack application experience without a backend database.
 
-### 📊 Interactive Dashboard
+---
 
-- **Real-Time KPIs:** Automatically calculates Total Fleet, Active Rentals, and Revenue based on data.
+## 📸 Project Screenshots
+
+### 1. Secure Login
+
+_(Authentication page with validation and error handling)_
+![Login Page](screenshots/login.png)
+
+### 2. Admin Dashboard
+
+_(Real-time KPIs, revenue charts, and fleet availability status)_
+![Dashboard](screenshots/dashboard.png)
+
+### 3. Fleet Management
+
+_(Inventory list with status filtering and management actions)_
+![Cars List](screenshots/cars.png)
+
+---
+
+## ✅ Key Features
+
+### 1. Authentication & Security
+
+- **Simulated Login:** Validates credentials (`admin` / `1234`) before granting access.
+- **Session Protection:** Restricts access to internal pages (Dashboard, Cars, etc.) unless logged in.
+- **Secure Logout:** Includes a confirmation modal to prevent accidental session termination.
+
+### 2. Interactive Dashboard
+
+- **Real-Time KPIs:** Automatically calculates Total Fleet, Active Rentals, and Revenue.
 - **Data Visualization:**
-  - **Revenue Area Chart:** Visualizes monthly income trends.
-  - **Fleet Status Donut Chart:** Shows real-time car availability.
-  - **Top 5 Cars:** Bar chart ranking the most popular vehicles.
-- **Recent Activity:** A dynamic log showing user actions and system alerts.
+  - **Revenue Chart:** Area chart showing monthly income trends.
+  - **Fleet Status:** Donut chart displaying Available vs. Rented cars.
+  - **Top Models:** Bar chart ranking the most popular vehicles.
 
-### 🚗 Fleet & Rental Management
+### 3. Comprehensive Data Management (CRUD)
 
-- **Dynamic Tables:** All data (Cars, Rentals, Customers) is rendered via JavaScript, making it easy to scale.
-- **Smart Filtering:** Dropdown filters to quickly view Available, Rented, or Maintenance vehicles.
-- **Status Indicators:** Color-coded badges (e.g., Green for "Paid", Red for "Maintenance") for instant status recognition.
-- **CRUD Actions:** Functional "Delete" buttons to remove records from the view.
+- **🚗 Cars List:** Add, edit, and remove vehicles. Status updates (e.g., "Maintenance") automatically block rentals.
+- **📄 Rental Logs:** Track customer bookings, dates, and payment status (Paid/Pending).
+- **🔧 Maintenance:** Log service records. Setting a car to "In Progress" automatically marks it as unavailable.
+- **👥 Customers:** Manage registered user database.
 
-### 🎨 UI/UX Design
+### 4. Professional UI/UX
 
-- **"GoMotion" Theme:** A custom Teal & Dark Blue color scheme for a professional look.
-- **Responsive Sidebar:** Collapsible navigation that works on Desktop and Mobile.
-- **Dark Mode:** Fully functional theme switcher (Light / Dark / Auto) that persists user preference.
+- **Responsive Design:** Fully functional on Desktop, Tablet, and Mobile (collapsible sidebar).
+- **Dark Mode:** Built-in theme switcher (Light / Dark / Auto) that persists user preference.
+- **Danger Zone:** A "Factory Reset" feature in Settings to wipe data and restore defaults.
 
 ---
 
 ## 🛠️ Tech Stack
 
 - **HTML5:** Semantic structure.
-- **CSS3:** Custom styling + **Bootstrap 5.3** framework.
-- **JavaScript (ES6):** Core logic for data processing, DOM manipulation, and interactivity.
-- **ApexCharts.js:** For interactive data visualization.
-- **FontAwesome 6:** For scalable icons.
+- **CSS3:** Custom theming combined with **Bootstrap 5.3**.
+- **JavaScript (ES6):** Modular architecture (`data.js`, `auth.js`, `logic.js`) for clean, maintainable code.
+- **ApexCharts.js:** For responsive data visualization.
+- **FontAwesome 6:** For modern vector icons.
+- **LocalStorage:** For client-side data persistence.
 
 ---
 
-## 💻 How to Run
+## 💻 Installation & Usage
 
-1. **Download** or **Clone** this repository.
-2. Access this link for Github Pages Live: https://haziqariff703.github.io/go_motion/
-3. Open the project folder.
-4. Double-click `index.html` to open it in your web browser (Google Chrome recommended).
-5. Login using the credentials below.
+1. **Clone the Repository**
+   ```bash
+   git clone [https://github.com/haziqariff703/go_motion.git](https://github.com/haziqariff703/go_motion.git)
+   Open the Project Navigate to the folder and double-click index.html to open it in your browser.
+   ```
 
-### 🔑 Demo Credentials
+Login Use the following demo credentials:
 
-- **Username:** `admin`
-- **Password:** `1234`
+Username: admin
 
----
+Password: 1234
 
 ## 📂 Project Structure
 
-```text
 /
-├── index.html          # Login Page
-├── dashboard.html      # Main Overview (Charts & KPIs)
-├── cars.html           # Vehicle Inventory Management
-├── rentals.html        # Rental Transaction Logs
-├── customers.html      # Customer Database
-├── maintenance.html    # Service & Repair Logs
-├── profile.html        # Admin Profile Settings
-├── settings.html       # System Configuration (Theme/Notifications)
+├── index.html # Login Page
+├── dashboard.html # Main Overview (Charts & KPIs)
+├── cars.html # Vehicle Inventory
+├── rentals.html # Rental Transaction Logs
+├── customers.html # Customer Database
+├── maintenance.html # Service Logs
+├── profile.html # Admin Profile
+├── settings.html # System Settings (Theme/Reset)
 ├── css/
-│   ├── style.css       # Custom Styles
-│   └── themes.css      # Color Variables & Dark Mode Logic
+│ ├── style.css # Layout & Component Styles
+│ └── themes.css # Color Variables & Dark Mode
 ├── js/
-│   ├── auth.js         # Login/Logout Logic
-│   ├── data.js         # Data Storage (LocalStorage)
-│   ├── dashboard.js    # Charts & Analytics
-│   ├── logic.js        # CRUD Operations
-│   ├── main.js         # Sidebar & Theme Initialization
-│   └── render.js       # HTML Table Generators
-└── images/             # Car & User avatars
-```
+│ ├── auth.js # Login/Logout Logic
+│ ├── data.js # LocalStorage Data Engine
+│ ├── dashboard.js # Charts & Statistics
+│ ├── logic.js # CRUD Operations
+│ ├── main.js # Sidebar & Global Init
+│ └── render.js # HTML Table Generators
+└── images/ # Assets

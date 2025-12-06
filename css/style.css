@@ -302,18 +302,17 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   background-color: #0077b5;
 }
 
-/* 7. GLOBAL MOBILE FIXES (Dropdowns & Navbar) */
+/* 7. MOBILE FIXES (Dropdowns & Navbar) */
 
 .navbar {
   overflow: visible !important;
   position: relative;
-  z-index: 1060; 
+  z-index: 1060;
 }
-
 
 .navbar .dropdown-menu {
   position: absolute !important;
-  z-index: 2000 !important; 
+  z-index: 2000 !important;
   right: 0;
   left: auto;
   min-width: 200px;
@@ -322,9 +321,8 @@ body.sb-sidenav-collapsed #page-content-wrapper {
 
 /* 8. MOBILE MEDIA QUERY (Max Width 768px) */
 @media (max-width: 768px) {
-  
   /* Initially hide the sidebar off-screen to the left. */
-  #sidebar-wrapper { 
+  #sidebar-wrapper {
     margin-left: -250px;
     position: fixed;
     height: 100vh;
@@ -348,7 +346,6 @@ body.sb-sidenav-collapsed #page-content-wrapper {
     margin-left: 0;
   }
 
- 
   .container-fluid.px-4 {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
@@ -359,7 +356,6 @@ body.sb-sidenav-collapsed #page-content-wrapper {
     padding-right: 1rem !important;
   }
 
-  
   .site-footer .col-6 {
     width: 50% !important;
   }

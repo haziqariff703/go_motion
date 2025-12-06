@@ -1,4 +1,4 @@
-// GLOBAL UI HELPERS & INITIALIZATION
+// UI HELPERS & INITIALIZATION
 
 /**
  * Debounce function to limit function execution frequency

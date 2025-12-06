@@ -80,9 +80,9 @@ function showValidationErrors(errors) {
 
 // ===== CAR CRUD OPERATIONS =====
 
-/**
- * Opens the car modal for adding a new car
- */
+
+// Opens the car modal for adding a new car
+
 function openCarModal() {
     document.getElementById('carForm').reset();
     const editInput = document.getElementById('editCarId');
@@ -161,9 +161,9 @@ function saveCar() {
 
 // ===== RENTAL CRUD OPERATIONS =====
 
-/**
- * Populates available cars in the booking form
- */
+
+// Populates available cars in the booking form
+
 function populateAvailableCars() {
     const carSelect = document.getElementById('bookCarModel');
     if (!carSelect) return;
@@ -187,9 +187,7 @@ function populateAvailableCars() {
     }
 }
 
-/**
- * Opens the booking modal for adding a new rental
- */
+// Opens the booking modal for adding a new rental
 function openBookingModal() {
     document.getElementById('bookingForm').reset();
     const editInput = document.getElementById('editRentalId');
@@ -198,9 +196,9 @@ function openBookingModal() {
     new bootstrap.Modal(document.getElementById('bookingModal')).show();
 }
 
-/**
- * Saves a booking (add or update)
- */
+
+// Saves a booking (add or update)
+ 
 function saveBooking() {
     const customer = document.getElementById('bookCustomer').value;
     const carModel = document.getElementById('bookCarModel').value;
@@ -317,9 +315,9 @@ function deleteRental(id) {
 
 // ===== CUSTOMER CRUD OPERATIONS =====
 
-/**
- * Opens the customer modal for adding a new customer
- */
+
+// Opens the customer modal for adding a new customer
+
 function openCustomerModal() {
     document.getElementById('customerForm').reset();
     const editInput = document.getElementById('customerForm').dataset;
@@ -327,9 +325,8 @@ function openCustomerModal() {
     new bootstrap.Modal(document.getElementById('customerModal')).show();
 }
 
-/**
- * Saves a customer (add or update)
- */
+// Saves a customer (add or update)
+
 function saveCustomer() {
     const form = document.getElementById('customerForm');
     const name = document.getElementById('custName').value;
@@ -406,9 +403,9 @@ function deleteCustomer(id) {
 
 // ===== MAINTENANCE CRUD OPERATIONS =====
 
-/**
- * Opens the maintenance modal for adding a new maintenance log
- */
+
+// Opens the maintenance modal for adding a new maintenance log
+
 function openMaintenanceModal() {
     document.getElementById('maintenanceForm').reset();
     document.getElementById('editMaintIndex').value = ""; 
@@ -456,9 +453,9 @@ function editMaintenance(index) {
     new bootstrap.Modal(document.getElementById('maintenanceModal')).show();
 }
 
-/**
- * Saves a maintenance log (add or update)
- */
+
+// Saves a maintenance log (add or update)
+
 function saveMaintenance() {
     const index = document.getElementById('editMaintIndex').value;
     const car = document.getElementById('maintCar').value;

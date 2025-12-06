@@ -1,8 +1,7 @@
 // 5. DASHBOARD & UI LOGIC
 
-/**
- * Updates Key Performance Indicators on the dashboard
- */
+// Updates Key Performance Indicators on the dashboard
+
 function updateKPIs() {
     // Safety check: ensure elements exist before trying to update
     const totalCarsEl = document.getElementById('totalCarsDisplay');

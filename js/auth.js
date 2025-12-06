@@ -1,6 +1,6 @@
-/**
- * @file Manages client-side authentication, page protection, and form interactions on the login page.
- */
+
+// auth.js manages client-side authentication, page protection, and form interactions on the login page.
+
 
 // --- Authentication & Page Protection ---
 // Checks if the user is authenticated upon page load.
@@ -32,18 +32,16 @@ if (loginForm) {
     });
 }
 
-/**
- * Logs the user out by clearing authentication from localStorage and redirecting to the login page.
- */
+// Logs the user out by clearing authentication from localStorage and redirecting to the login page.
 function logout() {
     localStorage.removeItem('crs_auth');
     window.location.href = 'index.html';
 }
 
-/**
- * Toggles the visibility between the login and registration form sections.
- * Assumes 'd-none' class is used for hiding elements.
- */
+
+// Toggles the visibility between the login and registration form sections.
+// Assumes 'd-none' class is used for hiding elements.
+
 function toggleForms() {
     const loginSec = document.getElementById('loginSection');
     const regSec = document.getElementById('registerSection');

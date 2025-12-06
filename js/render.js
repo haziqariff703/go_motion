@@ -1,4 +1,4 @@
-// 3. RENDER FUNCTIONS
+//RENDER FUNCTIONS
 
 /**
  * Returns the appropriate Bootstrap badge class for a given status

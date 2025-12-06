@@ -1,7 +1,7 @@
-/**
- * @file Defines the data structure and provides initial/default data for the application.
- * Also handles loading from and saving to localStorage.
- */
+
+// data.js defines the data structure and provides initial/default data for the application.
+// Also handles loading from and saving to localStorage.
+
 
 // --- Default Datasets ---
 // These arrays provide the initial data for the application when localStorage is empty.

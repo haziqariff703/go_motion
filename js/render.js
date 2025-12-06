@@ -1,5 +1,40 @@
 // 3. RENDER FUNCTIONS
 
+/**
+ * Returns the appropriate Bootstrap badge class for a given status
+ * @param {string} status - The status value
+ * @param {string} type - The type of status ('car', 'rental', 'customer', 'maintenance')
+ * @returns {string} - Bootstrap badge CSS classes
+ */
+function getStatusBadgeClass(status, type = 'car') {
+    const statusMap = {
+        'car': {
+            'Available': 'bg-success-subtle text-success',
+            'Rented': 'bg-warning-subtle text-warning',
+            'Maintenance': 'bg-danger-subtle text-danger'
+        },
+        'rental': {
+            'Paid': 'bg-success-subtle text-success',
+            'Pending': 'bg-warning-subtle text-warning',
+            'Cancelled': 'bg-secondary-subtle text-secondary'
+        },
+        'customer': {
+            'Verified': 'bg-success-subtle text-success',
+            'Pending': 'bg-warning-subtle text-warning',
+            'Rejected': 'bg-danger-subtle text-danger'
+        },
+        'maintenance': {
+            'Completed': 'bg-success-subtle text-success',
+            'In Progress': 'bg-warning-subtle text-warning',
+            'Pending': 'bg-secondary-subtle text-secondary'
+        }
+    };
+    return statusMap[type]?.[status] || 'bg-secondary-subtle text-secondary';
+}
+
+/**
+ * Renders the cars table with all car data
+ */
 function renderCars() {
     const table = document.getElementById('carsTableBody');
     if (!table) return;
@@ -18,7 +53,7 @@ function renderCars() {
             <td class="text-dark fw-bold font-monospace">${car.plateNumber}</td>
             <td class="fw-bold text-primary">${car.price}</td>
             <td>
-                <span class="badge rounded-pill ${car.status === 'Available' ? 'bg-success-subtle text-success' : car.status === 'Rented' ? 'bg-warning-subtle text-warning' : 'bg-danger-subtle text-danger'} px-3 py-2">
+                <span class="badge rounded-pill ${getStatusBadgeClass(car.status, 'car')} px-3 py-2">
                     ${car.status}
                 </span>
             </td>
@@ -44,7 +79,7 @@ function renderRentals() {
             <td class="text-muted">${rent.car}</td>
             <td class="small">${rent.dates}</td>
             <td class="fw-bold">${rent.total}</td>
-            <td><span class="badge rounded-pill ${rent.status === 'Paid' ? 'bg-success-subtle text-success' : rent.status === 'Pending' ? 'bg-warning-subtle text-warning' : 'bg-secondary-subtle text-secondary'} px-3 py-2">${rent.status}</span></td>
+            <td><span class="badge rounded-pill ${getStatusBadgeClass(rent.status, 'rental')} px-3 py-2">${rent.status}</span></td>
             <td class="text-end pe-4">
                 <button class="btn btn-sm btn-light text-primary me-1" onclick="editRental('${rent.id}')" title="Edit">
                     <i class="fas fa-edit"></i>
@@ -70,7 +105,7 @@ function renderCustomers() {
             </td>
             <td><div class="text-dark">${cust.email}</div><div class="small text-muted">${cust.phone}</div></td>
             <td class="text-muted">${cust.joinDate}</td>
-            <td><span class="badge rounded-pill px-3 py-2 ${cust.status === 'Verified' ? 'bg-success-subtle text-success' : cust.status === 'Pending' ? 'bg-warning-subtle text-warning' : 'bg-danger-subtle text-danger'}">${cust.status}</span></td>
+            <td><span class="badge rounded-pill px-3 py-2 ${getStatusBadgeClass(cust.status, 'customer')}">${cust.status}</span></td>
             <td class="text-end pe-4">
                 <button class="btn btn-sm btn-light text-primary me-1" onclick="editCustomer('${cust.id}')" title="Edit">
                     <i class="fas fa-edit"></i>
@@ -95,7 +130,7 @@ function renderMaintenance() {
             <td class="text-muted">${item.date}</td>
             <td class="fw-bold">${item.cost}</td>
             <td>
-                <span class="badge rounded-pill px-3 py-2 ${item.status === 'Completed' ? 'bg-success-subtle text-success' : item.status === 'In Progress' ? 'bg-warning-subtle text-warning' : 'bg-secondary-subtle text-secondary'}">
+                <span class="badge rounded-pill px-3 py-2 ${getStatusBadgeClass(item.status, 'maintenance')}">
                     ${item.status}
                 </span>
             </td>

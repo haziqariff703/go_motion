@@ -1,5 +1,8 @@
 // 5. DASHBOARD & UI LOGIC
 
+/**
+ * Updates Key Performance Indicators on the dashboard
+ */
 function updateKPIs() {
     // Safety check: ensure elements exist before trying to update
     const totalCarsEl = document.getElementById('totalCarsDisplay');
@@ -18,7 +21,7 @@ function updateKPIs() {
     if (totalRevenueEl && rentalData) {
         const total = rentalData.reduce((sum, r) => {
             if (r.status === 'Paid' && r.total) {
-                // SAFETY FIX: Convert to string first, then clean
+                // Cleans the currency string (e.g., "RM 180") to get a numeric value.
                 const cleanStr = String(r.total).replace(/[^\d.-]/g, '');
                 const amount = parseInt(cleanStr) || 0; 
                 return sum + amount;
@@ -42,6 +45,7 @@ function initCharts() {
     const revenueEl = document.querySelector("#revenueChart");
     if (revenueEl) {
         let monthlyRevenue = Array(12).fill(0);
+        // Aggregate revenue data by month
         
         if (Array.isArray(rentalData)) {
             rentalData.forEach(r => {
@@ -53,6 +57,7 @@ function initCharts() {
             });
         }
 
+        // ApexCharts configuration for the revenue area chart
         const options = {
             series: [{ name: 'Net Revenue', data: monthlyRevenue }],
             chart: { 
@@ -73,7 +78,8 @@ function initCharts() {
             }
         };
 
-        if(window.revenueChartInstance) window.revenueChartInstance.destroy();
+        // Destroy previous chart instance to prevent memory leaks before re-rendering
+        if (window.revenueChartInstance) window.revenueChartInstance.destroy();
         window.revenueChartInstance = new ApexCharts(revenueEl, options);
         window.revenueChartInstance.render();
     }
@@ -82,6 +88,7 @@ function initCharts() {
     const statusEl = document.querySelector("#statusChart");
     if (statusEl) {
         let statusCounts = [0, 0, 0];
+        // Calculate counts for each car status
         if (Array.isArray(carData)) {
             statusCounts = [
                 carData.filter(c => c.status === 'Available').length,
@@ -90,6 +97,7 @@ function initCharts() {
             ];
         }
 
+        // ApexCharts configuration for the fleet status donut chart
         const options = {
             series: statusCounts,
             labels: ['Available', 'Rented', 'Maintenance'],
@@ -99,7 +107,7 @@ function initCharts() {
                 foreColor: textColor 
             },
             colors: ['#10b981', '#f59e0b', '#ef4444'],
-            //  THIS ADDS THE PERCENTAGE IN THE MIDDLE
+            // Configuration for the text inside the donut chart
             plotOptions: {
                 pie: {
                     donut: {
@@ -135,7 +143,8 @@ function initCharts() {
             tooltip: { theme: isDark ? 'dark' : 'light' }
         };
 
-        if(window.statusChartInstance) window.statusChartInstance.destroy();
+        // Destroy previous chart instance before re-rendering
+        if (window.statusChartInstance) window.statusChartInstance.destroy();
         window.statusChartInstance = new ApexCharts(statusEl, options);
         window.statusChartInstance.render();
     }
@@ -143,6 +152,7 @@ function initCharts() {
     // 4. TOP CARS CHART
     const topCarsEl = document.querySelector("#topCarsChart");
     if (topCarsEl) {
+        // Count rental frequency for each car model
         const carCounts = {};
         if (Array.isArray(rentalData)) {
             rentalData.forEach(rent => {
@@ -151,10 +161,12 @@ function initCharts() {
             });
         }
 
+        // Sort cars by rental count and take the top 5
         const sortedCars = Object.entries(carCounts).sort((a, b) => b[1] - a[1]).slice(0, 5);
         const models = sortedCars.map(item => item[0]);
         const counts = sortedCars.map(item => item[1]);
 
+        // ApexCharts configuration for the top cars bar chart
         const options = {
             series: [{ name: 'Times Rented', data: counts }],
             chart: { 
@@ -169,7 +181,8 @@ function initCharts() {
             tooltip: { theme: isDark ? 'dark' : 'light' }
         };
 
-        if(window.topCarsChartInstance) window.topCarsChartInstance.destroy();
+        // Destroy previous chart instance before re-rendering
+        if (window.topCarsChartInstance) window.topCarsChartInstance.destroy();
         window.topCarsChartInstance = new ApexCharts(topCarsEl, options);
         window.topCarsChartInstance.render();
     }

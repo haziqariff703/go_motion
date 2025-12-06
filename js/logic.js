@@ -1,8 +1,6 @@
-// =========================================
-// 4. BUSINESS LOGIC (CRUD & MODALS)
-// =========================================
+// CRUD OPERATIONS
 
-// --- CARS: OPEN & EDIT ---
+// Open and edit car details
 function openCarModal() {
     document.getElementById('carForm').reset();
     const editInput = document.getElementById('editCarId');
@@ -18,9 +16,9 @@ function editCar(id) {
     // Fill form with existing data
     document.getElementById('editCarId').value = car.id;
     
-    // UPDATED IDs to match your new HTML
-    document.getElementById('carModel').value = car.model; // Was 'carName'
-    document.getElementById('carType').value = car.type || ""; // New Field
+    
+    document.getElementById('carModel').value = car.model; 
+    document.getElementById('carType').value = car.type || ""; 
     
     document.getElementById('carPlate').value = car.plateNumber;
     document.getElementById('carRate').value = car.price.replace(/[^\d.]/g, ''); 
@@ -30,13 +28,13 @@ function editCar(id) {
     new bootstrap.Modal(document.getElementById('carModal')).show();
 }
 
-// --- CARS: SAVE ---
+// Save car (add or update)
 function saveCar() {
     const id = document.getElementById('editCarId').value;
     
-    // UPDATED IDs to match your new HTML
-    const model = document.getElementById('carModel').value; // Was 'carName'
-    const type = document.getElementById('carType').value;   // New Field
+    
+    const model = document.getElementById('carModel').value; 
+    const type = document.getElementById('carType').value;  
     
     const plate = document.getElementById('carPlate').value;
     const rate = document.getElementById('carRate').value;
@@ -45,17 +43,17 @@ function saveCar() {
     if (!model || !plate) { alert("Details required!"); return; }
 
     if (id) {
-        // UPDATE Existing
+        // Update Existing car data
         const index = carData.findIndex(c => c.id === id);
         if (index !== -1) {
             carData[index].model = model;
-            carData[index].type = type; // Update type
+            carData[index].type = type; 
             carData[index].plateNumber = plate;
             carData[index].price = 'RM ' + rate;
             carData[index].status = status;
         }
     } else {
-        // CREATE New
+        // Create new car data
         carData.push({
             id: 'C' + (carData.length + 1).toString().padStart(3, '0'),
             model: model,
@@ -72,7 +70,7 @@ function saveCar() {
     bootstrap.Modal.getInstance(document.getElementById('carModal')).hide();
 }
 
-// --- BOOKINGS ---
+// Rentals -- Populate available cars in booking form
 function populateAvailableCars() {
     const carSelect = document.getElementById('bookCarModel');
     if (!carSelect) return;
@@ -153,7 +151,7 @@ function saveBooking() {
     if (typeof initCharts === 'function') initCharts();
 }
 
-// --- CUSTOMERS ---
+// Customers: Open,Edit and Save
 function openCustomerModal() {
     document.getElementById('customerForm').reset();
     const editInput = document.getElementById('customerForm').dataset;
@@ -198,7 +196,7 @@ function saveCustomer() {
     bootstrap.Modal.getInstance(document.getElementById('customerModal')).hide();
 }
 
-// --- MAINTENANCE: OPEN & EDIT ---
+// Maintenance Logs: Open, Edit, Save
 function openMaintenanceModal() {
     document.getElementById('maintenanceForm').reset();
     document.getElementById('editMaintIndex').value = ""; 
@@ -239,7 +237,7 @@ function editMaintenance(index) {
     new bootstrap.Modal(document.getElementById('maintenanceModal')).show();
 }
 
-// --- MAINTENANCE: SAVE ---
+// Maintenance save functions
 function saveMaintenance() {
     const index = document.getElementById('editMaintIndex').value;
     const car = document.getElementById('maintCar').value;
@@ -333,7 +331,7 @@ function editRental(id) {
 
     document.getElementById('bookCustomer').value = rent.customer || '';
 
-    // Ensure options exist
+    
     populateAvailableCars();
 
     const carSelect = document.getElementById('bookCarModel');

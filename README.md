@@ -95,8 +95,9 @@ _(Inventory list with status filtering and management actions)_
 1. **Clone the Repository**
    ```bash
    git clone [https://github.com/haziqariff703/go_motion.git](https://github.com/haziqariff703/go_motion.git)
-   Open the Project Navigate to the folder and double-click index.html to open it in your browser.
+
    ```
+   Open the Project Navigate to the folder and double-click index.html to open it in your browser.
 
 Login Use the following demo credentials:
 

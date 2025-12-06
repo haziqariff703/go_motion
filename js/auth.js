@@ -1,4 +1,4 @@
-// Authentication Check
+//  Authentication Check
 const isLoggedIn = localStorage.getItem('crs_auth');
 const currentPage = window.location.pathname.split("/").pop();
 
@@ -59,7 +59,7 @@ function togglePassword(inputId, btn) {
     }
 }
 
-// 3. Handle Register Form Submit (For create account simulation)
+// 3. Handle Register Form Submit 
 const regForm = document.getElementById('registerForm');
 if (regForm) {
     regForm.addEventListener('submit', function(e) {

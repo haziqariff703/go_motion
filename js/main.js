@@ -1,6 +1,4 @@
-// =========================================
 // GLOBAL UI HELPERS & INITIALIZATION
-// =========================================
 
 // 1. Filter Helper
 function filterCarStatus(status) {

@@ -70,7 +70,7 @@ function saveCar() {
     bootstrap.Modal.getInstance(document.getElementById('carModal')).hide();
 }
 
-// Rentals -- Populate available cars in booking form
+// Rentals - Populate available cars in booking form
 function populateAvailableCars() {
     const carSelect = document.getElementById('bookCarModel');
     if (!carSelect) return;

@@ -67,7 +67,7 @@ let rentalData = loadData('crs_rentals', defaultRentalData);
 let customerData = loadData('crs_customers', defaultCustomerData);
 let maintenanceData = loadData('crs_maintenance', defaultMaintenanceData);
 
-// Save Function (Remains the same)
+// Save Function 
 function saveData() {
     localStorage.setItem('crs_cars', JSON.stringify(carData));
     localStorage.setItem('crs_rentals', JSON.stringify(rentalData));

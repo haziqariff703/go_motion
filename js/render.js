@@ -1,6 +1,4 @@
-// =========================================
 // 3. RENDER FUNCTIONS
-// =========================================
 
 function renderCars() {
     const table = document.getElementById('carsTableBody');
@@ -89,7 +87,7 @@ function renderMaintenance() {
     const table = document.getElementById('maintenanceTableBody');
     if (!table) return;
     
-    // We use 'index' because maintenance logs don't have unique IDs in your data
+    // We use 'index' because maintenance logs don't have unique IDs in data
     table.innerHTML = maintenanceData.map((item, index) => `
         <tr>
             <td class="ps-4 fw-bold text-dark">${item.car}</td>

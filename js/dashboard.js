@@ -1,9 +1,7 @@
-// =========================================
 // 5. DASHBOARD & UI LOGIC
-// =========================================
 
 function updateKPIs() {
-    // Safety check: ensure elements exist before trying to update them
+    // Safety check: ensure elements exist before trying to update
     const totalCarsEl = document.getElementById('totalCarsDisplay');
     const totalFleetLabel = document.getElementById('totalFleetLabel');
     if (totalCarsEl && carData) {
@@ -32,7 +30,7 @@ function updateKPIs() {
     }
 }
 
-// --- CHARTS & GRAPHS ---
+//  CHARTS & GRAPHS 
 function initCharts() {
     // 1. DETERMINE THEME COLOR
     const isDark = localStorage.getItem('crs_theme') === 'dark' || 
@@ -101,7 +99,7 @@ function initCharts() {
                 foreColor: textColor 
             },
             colors: ['#10b981', '#f59e0b', '#ef4444'],
-            // --- THIS ADDS THE PERCENTAGE IN THE MIDDLE ---
+            //  THIS ADDS THE PERCENTAGE IN THE MIDDLE
             plotOptions: {
                 pie: {
                     donut: {
@@ -131,7 +129,7 @@ function initCharts() {
                     }
                 }
             },
-            // ----------------------------------------------
+
             dataLabels: { enabled: false },
             legend: { position: 'bottom' },
             tooltip: { theme: isDark ? 'dark' : 'light' }

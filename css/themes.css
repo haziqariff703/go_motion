@@ -22,9 +22,7 @@ body {
   overflow-x: hidden;
 }
 
-/* =========================================
-   DARK MODE OVERRIDES
-   ========================================= */
+/* DARK MODE OVERRIDES */
 [data-bs-theme="dark"] {
   --bg-color: #0f172a; /* Very dark blue/slate */
   --sidebar-bg: #020617; /* Black-ish sidebar */
@@ -84,9 +82,7 @@ body {
   background-color: #334155;
 }
 
-/* =========================================
-   6. DARK MODE FIXES (The "Invisible Text" Fixer)
-   ========================================= */
+/* 6. DARK MODE FIXES (The "Invisible Text" Fixer) */
 
 /* Force ".text-dark" to be WHITE in dark mode */
 [data-bs-theme="dark"] .text-dark {
@@ -99,8 +95,7 @@ body {
   color: var(--text-main);
 }
 
-/* Force ".bg-light" to be SEMI-TRANSPARENT in dark mode 
-   (This fixes your stat icons and table headers) */
+/* Force ".bg-light" to be SEMI-TRANSPARENT in dark mode */
 [data-bs-theme="dark"] .bg-light {
   background-color: rgba(255, 255, 255, 0.05) !important;
   color: var(--text-main) !important;
@@ -121,9 +116,7 @@ body {
   opacity: 1;
 }
 
-/* =========================================
-   GLOBAL SMOOTH TRANSITIONS
-   ========================================= */
+/* GLOBAL SMOOTH TRANSITIONS */
 body,
 .card,
 .navbar,

@@ -1,6 +1,4 @@
-/* =========================================
-   1. LOGIN PAGE & ANIMATIONS
-   ========================================= */
+/* 1. LOGIN PAGE & ANIMATIONS */
 .auth-card .form-control:focus {
   box-shadow: none;
   border-color: var(--primary-color);
@@ -42,9 +40,7 @@
   }
 }
 
-/* =========================================
-   2. SIDEBAR DESIGN (Desktop Default)
-   ========================================= */
+/* 2. SIDEBAR DESIGN */
 .sidebar-brand {
   height: 90px;
   padding: 1rem;
@@ -148,9 +144,7 @@
   color: var(--primary-color);
 }
 
-/* =========================================
-   3. COMPONENTS (Cards, Charts, Tables)
-   ========================================= */
+/* 3. COMPONENTS (Cards, Charts, Tables) */
 #page-content-wrapper {
   width: 100%;
   transition: all 0.25s ease;
@@ -219,9 +213,7 @@
   border-radius: 6px;
 }
 
-/* =========================================
-   4. NAVBAR STYLING
-   ========================================= */
+/* 4. NAVBAR STYLING */
 .navbar-teal {
   background-color: var(--primary-color) !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -237,9 +229,7 @@
   color: white;
 }
 
-/* =========================================
-   5. COLLAPSED STATE (Desktop Mini-Sidebar)
-   ========================================= */
+/* 5. COLLAPSED STATE (Desktop Mini-Sidebar) */
 body.sb-sidenav-collapsed #sidebar-wrapper {
   width: 70px;
 }
@@ -262,9 +252,7 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   margin-left: 0;
 }
 
-/* =========================================
-   6. FOOTER STYLES
-   ========================================= */
+/* 6. FOOTER STYLES */
 .site-footer {
   font-size: 0.9rem;
   position: relative;
@@ -316,9 +304,7 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   background-color: #0077b5;
 }
 
-/* =========================================
-   7. GLOBAL MOBILE FIXES (Dropdowns & Navbar)
-   ========================================= */
+/* 7. GLOBAL MOBILE FIXES (Dropdowns & Navbar) */
 
 /* Allow the dropdown to spill out of the navbar */
 .navbar {
@@ -337,9 +323,7 @@ body.sb-sidenav-collapsed #page-content-wrapper {
   margin-top: 10px;
 }
 
-/* =========================================
-   8. MOBILE MEDIA QUERY (Max Width 768px)
-   ========================================= */
+/* 8. MOBILE MEDIA QUERY (Max Width 768px) */
 @media (max-width: 768px) {
   /* Sidebar: Sits on TOP of everything */
   #sidebar-wrapper {

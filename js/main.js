@@ -1,6 +1,24 @@
 // GLOBAL UI HELPERS & INITIALIZATION
 
+/**
+ * Debounce function to limit function execution frequency
+ * @param {Function} func - Function to debounce
+ * @param {number} delay - Delay in milliseconds
+ * @returns {Function} - Debounced function
+ */
+function debounce(func, delay = 300) {
+    let timeoutId;
+    return function(...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
 // 1. Filter Helper
+/**
+ * Filters car table by status
+ * @param {string} status - Status to filter by ('all', 'Available', 'Rented', 'Maintenance')
+ */
 function filterCarStatus(status) {
     const rows = document.querySelectorAll('#carsTableBody tr');
     rows.forEach(row => {

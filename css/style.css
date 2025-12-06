@@ -151,7 +151,7 @@
 }
 
 .stat-card {
-  background: white;
+  background: #f5f5f5;
   border: none;
   border-radius: 16px;
   box-shadow: var(--card-shadow);
@@ -173,7 +173,7 @@
 }
 
 .chart-container {
-  background: white;
+  background: #f5f5f5;
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: var(--card-shadow);
@@ -195,17 +195,6 @@
   background-color: #f1f5f9;
 }
 
-.container table.table thead th,
-.container-fluid table.table thead th {
-  background-color: #f8fafc;
-  color: #64748b;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  border-bottom: 2px solid #e2e8f0;
-}
-
 .table-custom img {
   width: 80px;
   height: 45px;
@@ -215,6 +204,9 @@
 
 /* 4. NAVBAR STYLING */
 .navbar-teal {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
   background-color: var(--primary-color) !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -229,10 +221,15 @@
   color: white;
 }
 
-/* 5. Dekstop Mini Sidebar*/
+/* 5. Desktop Mini Sidebar (Toggled via JavaScript) */
+/* When the 'sb-sidenav-collapsed' class is added to the body*/
+
+/* ...shrink the sidebar width. */
 body.sb-sidenav-collapsed #sidebar-wrapper {
   width: 70px;
 }
+
+/* hide all text elements within the sidebar. */
 body.sb-sidenav-collapsed .sidebar-profile,
 body.sb-sidenav-collapsed .sidebar-label,
 body.sb-sidenav-collapsed .menu-text,
@@ -240,6 +237,7 @@ body.sb-sidenav-collapsed .sidebar-brand .brand-text {
   display: none !important;
 }
 
+/* center the icons in the collapsed sidebar. */
 body.sb-sidenav-collapsed #sidebar-wrapper .list-group-item {
   padding: 15px 0;
   justify-content: center;
@@ -325,7 +323,8 @@ body.sb-sidenav-collapsed #page-content-wrapper {
 /* 8. MOBILE MEDIA QUERY (Max Width 768px) */
 @media (max-width: 768px) {
   
-  #sidebar-wrapper {
+  /* Initially hide the sidebar off-screen to the left. */
+  #sidebar-wrapper { 
     margin-left: -250px;
     position: fixed;
     height: 100vh;
@@ -333,7 +332,7 @@ body.sb-sidenav-collapsed #page-content-wrapper {
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
   }
 
- 
+  /* A backdrop for when the sidebar is open on mobile. */
   .sidebar-backdrop {
     position: fixed;
     top: 0;
@@ -344,7 +343,7 @@ body.sb-sidenav-collapsed #page-content-wrapper {
     z-index: 1070 !important;
     backdrop-filter: blur(2px);
   }
-
+  /* When 'sb-sidenav-open' is on the body, slide the sidebar into view. */
   body.sb-sidenav-open #sidebar-wrapper {
     margin-left: 0;
   }

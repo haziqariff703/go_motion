@@ -1,4 +1,11 @@
-// Datasets for Car Rental System
+/**
+ * @file Defines the data structure and provides initial/default data for the application.
+ * Also handles loading from and saving to localStorage.
+ */
+
+// --- Default Datasets ---
+// These arrays provide the initial data for the application when localStorage is empty.
+// They serve as a fallback and define the expected object structure for each data type.
 
 const defaultCarData = [
     { id: 'C001', model: 'Perodua Myvi', type: 'Compact', plateNumber: 'ABC1234', price: 'RM 60', status: 'Available', image: 'images/myvi.jpg' },
@@ -46,22 +53,30 @@ const defaultCustomerData = [
 ];
 
 const defaultMaintenanceData = [
-    { car: 'Proton X50', issue: 'Regular Service (10k KM)', date: '20 Oct 2024', cost: 'RM 350', status: 'Completed' },
-    { car: 'Myvi Gen3', issue: 'Aircond Not Cold', date: '23 Oct 2024', cost: 'RM 120', status: 'In Progress' },
-    { car: 'Honda City', issue: 'Brake Pad Replacement', date: '25 Oct 2024', cost: 'RM 250', status: 'Pending' },
-    { car: 'Toyota Vios', issue: 'Tyre Alignment', date: '26 Oct 2024', cost: 'RM 80', status: 'Pending' }
+    { id: 'M001', car: 'Proton X50', issue: 'Regular Service (10k KM)', date: '20 Oct 2024', cost: 'RM 350', status: 'Completed' },
+    { id: 'M002', car: 'Myvi Gen3', issue: 'Aircond Not Cold', date: '23 Oct 2024', cost: 'RM 120', status: 'In Progress' },
+    { id: 'M003', car: 'Honda City', issue: 'Brake Pad Replacement', date: '25 Oct 2024', cost: 'RM 250', status: 'Pending' },
+    { id: 'M004', car: 'Toyota Vios', issue: 'Tyre Alignment', date: '26 Oct 2024', cost: 'RM 80', status: 'Pending' }
 ];
 
-// Data Initialization
-
-// Helper to check if data exists AND is not empty
+/**
+ * Safely loads data from localStorage with error handling
+ * @param {string} key - The localStorage key
+ * @param {Array} defaultData - Default data to use if loading fails
+ * @returns {Array} - Loaded data or default data
+ */
 function loadData(key, defaultData) {
-    const stored = JSON.parse(localStorage.getItem(key));
-    // If stored data exists AND has items, use it. Otherwise, use default.
-    return (stored && stored.length > 0) ? stored : defaultData;
+    try {
+        const stored = JSON.parse(localStorage.getItem(key));
+        // If stored data exists AND has items, use it. Otherwise, use default.
+        return (stored && stored.length > 0) ? stored : defaultData;
+    } catch (error) {
+        console.error(`Failed to load data from localStorage key "${key}":`, error);
+        return defaultData;
+    }
 }
 
-// Initialize Variables
+// --- Data Initialization ---
 let carData = loadData('crs_cars', defaultCarData);
 let rentalData = loadData('crs_rentals', defaultRentalData);
 let customerData = loadData('crs_customers', defaultCustomerData);

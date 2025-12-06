@@ -22,7 +22,7 @@ body {
   overflow-x: hidden;
 }
 
-/* DARK MODE OVERRIDES */
+/* --- Dark Mode Variables --- */
 [data-bs-theme="dark"] {
   --bg-color: #0f172a; 
   --sidebar-bg: #020617; 
@@ -32,13 +32,14 @@ body {
   --border-color: #334155; 
 }
 
-/* Apply dark variables */
+/* --- Dark Mode Base Styles --- */
 [data-bs-theme="dark"] body {
   background-color: var(--bg-color);
   color: var(--text-main);
 }
 
-[data-bs-theme="dark"] .card,
+/* --- Component Backgrounds & Borders --- */
+[data-bs-theme="dark"] .card, 
 [data-bs-theme="dark"] .stat-card,
 [data-bs-theme="dark"] .chart-container,
 [data-bs-theme="dark"] .navbar,
@@ -49,7 +50,7 @@ body {
   border-color: var(--border-color) !important;
 }
 
-/* Specific fixes for Dark Mode Text */
+/* --- Text & Heading Colors --- */
 [data-bs-theme="dark"] h1,
 [data-bs-theme="dark"] h2,
 [data-bs-theme="dark"] h3,
@@ -64,7 +65,7 @@ body {
   color: var(--text-muted) !important;
 }
 
-/* Fix Tables in Dark Mode */
+/* --- Table Styles --- */
 [data-bs-theme="dark"] .table {
   color: var(--text-main);
   border-color: var(--border-color);
@@ -82,38 +83,20 @@ body {
   background-color: #334155;
 }
 
-/* 6. DARK MODE FIXES (The "Invisible Text" Fixer) */
-
-
+/* --- Utility Class Overrides --- */
 [data-bs-theme="dark"] .text-dark {
   color: var(--text-main) !important;
 }
-
 
 [data-bs-theme="dark"] .bg-white {
   background-color: var(--card-bg) !important;
   color: var(--text-main);
 }
 
-
 [data-bs-theme="dark"] .bg-light {
   background-color: rgba(255, 255, 255, 0.05) !important;
   color: var(--text-main) !important;
   border-color: var(--border-color) !important;
-}
-
-/* Fix Inputs (Text boxes) */
-[data-bs-theme="dark"] .form-control,
-[data-bs-theme="dark"] .form-select {
-  background-color: #0f172a; /* Dark background */
-  border-color: #334155; /* Dark border */
-  color: #ffffff; /* White text */
-}
-
-/* Fix Placeholders (The grey text inside empty inputs) */
-[data-bs-theme="dark"] ::placeholder {
-  color: #94a3b8 !important;
-  opacity: 1;
 }
 
 /* GLOBAL SMOOTH TRANSITIONS */
@@ -127,11 +110,7 @@ h1,
 h2,
 h3,
 h4,
-h5,
-p,
-span,
-i,
-div {
+h5 {
   
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease, box-shadow 0.3s ease;
@@ -147,10 +126,38 @@ div {
   ) !important; 
 }
 
-/* Fix Form Inputs */
+/* --- Form Control Styles --- */
 [data-bs-theme="dark"] .form-control,
 [data-bs-theme="dark"] .form-select {
   background-color: #0f172a;
   border-color: #334155;
   color: #f8fafc;
+}
+
+[data-bs-theme="dark"] ::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1;
+}
+
+/* --- Special Effects --- */
+[data-bs-theme="dark"] .text-rgb {
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  
+  background-size: 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rgbFlow 10s linear infinite;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
 }

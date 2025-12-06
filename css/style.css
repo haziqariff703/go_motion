@@ -229,7 +229,7 @@
   color: white;
 }
 
-/* 5. COLLAPSED STATE (Desktop Mini-Sidebar) */
+/* 5. Dekstop Mini Sidebar*/
 body.sb-sidenav-collapsed #sidebar-wrapper {
   width: 70px;
 }
@@ -306,17 +306,16 @@ body.sb-sidenav-collapsed #page-content-wrapper {
 
 /* 7. GLOBAL MOBILE FIXES (Dropdowns & Navbar) */
 
-/* Allow the dropdown to spill out of the navbar */
 .navbar {
   overflow: visible !important;
   position: relative;
-  z-index: 1060; /* Sits below Sidebar (1080) and Backdrop (1070) */
+  z-index: 1060; 
 }
 
-/* Force dropdown to float on top */
+
 .navbar .dropdown-menu {
   position: absolute !important;
-  z-index: 2000 !important; /* Highest priority for menu */
+  z-index: 2000 !important; 
   right: 0;
   left: auto;
   min-width: 200px;
@@ -325,7 +324,7 @@ body.sb-sidenav-collapsed #page-content-wrapper {
 
 /* 8. MOBILE MEDIA QUERY (Max Width 768px) */
 @media (max-width: 768px) {
-  /* Sidebar: Sits on TOP of everything */
+  
   #sidebar-wrapper {
     margin-left: -250px;
     position: fixed;
@@ -334,7 +333,7 @@ body.sb-sidenav-collapsed #page-content-wrapper {
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
   }
 
-  /* Backdrop: Sits below Sidebar but ABOVE Navbar */
+ 
   .sidebar-backdrop {
     position: fixed;
     top: 0;
@@ -350,7 +349,7 @@ body.sb-sidenav-collapsed #page-content-wrapper {
     margin-left: 0;
   }
 
-  /* Layout Tweak: Prevent Squishing */
+ 
   .container-fluid.px-4 {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
@@ -361,7 +360,7 @@ body.sb-sidenav-collapsed #page-content-wrapper {
     padding-right: 1rem !important;
   }
 
-  /* Footer Tweak: 2 Columns side-by-side */
+  
   .site-footer .col-6 {
     width: 50% !important;
   }

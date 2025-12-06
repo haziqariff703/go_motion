@@ -36,7 +36,7 @@ function initCharts() {
     const isDark = localStorage.getItem('crs_theme') === 'dark' || 
                    (!localStorage.getItem('crs_theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
     
-    const textColor = isDark ? '#f8fafc' : '#1e293b'; // White or Dark Blue
+    const textColor = isDark ? '#f8fafc' : '#1e293b'; 
 
     // 2. REVENUE CHART
     const revenueEl = document.querySelector("#revenueChart");
@@ -78,7 +78,7 @@ function initCharts() {
         window.revenueChartInstance.render();
     }
 
-    // 3. FLEET STATUS CHART (Fixed: Adds Center Label)
+    // 3. FLEET STATUS CHART 
     const statusEl = document.querySelector("#statusChart");
     if (statusEl) {
         let statusCounts = [0, 0, 0];

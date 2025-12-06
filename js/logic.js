@@ -61,7 +61,6 @@ function saveCar() {
             plateNumber: plate,
             price: 'RM ' + (rate || '0'),
             status: status,
-            image: 'https://placehold.co/60x40?text=New'
         });
     }
 

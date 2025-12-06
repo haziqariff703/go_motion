@@ -1,17 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
 
 :root {
-  /* Primary: Deep Indigo */
+  
   --primary-color: #4f46e5;
 
-  /* Sidebar: Very Dark Slate/Black */
+  
   --sidebar-bg: #1e293b;
   --sidebar-hover: #334155;
 
-  /* Background: Cool Gray */
+  
   --bg-color: #ffffff;
 
-  /* Text */
+  
   --text-light: #f1f5f9;
   --text-muted: #94a3b8;
 }
@@ -24,12 +24,12 @@ body {
 
 /* DARK MODE OVERRIDES */
 [data-bs-theme="dark"] {
-  --bg-color: #0f172a; /* Very dark blue/slate */
-  --sidebar-bg: #020617; /* Black-ish sidebar */
-  --card-bg: #1e293b; /* Dark card background */
-  --text-main: #f8fafc; /* White text */
-  --text-muted: #94a3b8; /* Gray text */
-  --border-color: #334155; /* Dark borders */
+  --bg-color: #0f172a; 
+  --sidebar-bg: #020617; 
+  --card-bg: #1e293b; 
+  --text-main: #f8fafc; 
+  --text-muted: #94a3b8; 
+  --border-color: #334155; 
 }
 
 /* Apply dark variables */
@@ -84,18 +84,18 @@ body {
 
 /* 6. DARK MODE FIXES (The "Invisible Text" Fixer) */
 
-/* Force ".text-dark" to be WHITE in dark mode */
+
 [data-bs-theme="dark"] .text-dark {
   color: var(--text-main) !important;
 }
 
-/* Force ".bg-white" to turn DARK BLUE in dark mode */
+
 [data-bs-theme="dark"] .bg-white {
   background-color: var(--card-bg) !important;
   color: var(--text-main);
 }
 
-/* Force ".bg-light" to be SEMI-TRANSPARENT in dark mode */
+
 [data-bs-theme="dark"] .bg-light {
   background-color: rgba(255, 255, 255, 0.05) !important;
   color: var(--text-main) !important;
@@ -132,19 +132,19 @@ p,
 span,
 i,
 div {
-  /* Animate background and text color changes for 0.3 seconds */
+  
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Dim the logo circle in dark mode */
+
 [data-bs-theme="dark"] .navbar .rounded-circle.shadow-sm.me-2 {
   background-color: rgba(
     255,
     255,
     255,
     0.2
-  ) !important; /* Semi-transparent white */
+  ) !important; 
 }
 
 /* Fix Form Inputs */

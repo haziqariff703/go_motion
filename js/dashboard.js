@@ -35,8 +35,9 @@ function updateKPIs() {
 //  CHARTS & GRAPHS 
 function initCharts() {
     // 1. DETERMINE THEME COLOR
-    const isDark = localStorage.getItem('crs_theme') === 'dark' || 
-                   (!localStorage.getItem('crs_theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const theme = localStorage.getItem('crs_theme') || 'light';
+    const isDark = theme === 'dark' || 
+                   (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
     
     const textColor = isDark ? '#f8fafc' : '#1e293b'; 
 
